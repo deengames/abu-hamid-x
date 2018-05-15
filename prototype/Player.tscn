@@ -28,7 +28,8 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
-movement_speed = 200
+max_movement_speed = 400
+acceleration = 1000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 

@@ -1,6 +1,7 @@
 extends RigidBody2D
 
-export (int) var movement_speed = 200
+export (int) var max_movement_speed = 400
+export (int) var acceleration = 1000
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -9,13 +10,16 @@ func _ready():
 
 
 func _integrate_forces(state):
-	if Input.is_action_pressed('move_up'):
-		add_force(Vector2(0, 0), Vector2(0, -movement_speed * state.step))
-	if Input.is_action_pressed('move_left'):
-		add_force(Vector2(0, 0), Vector2(-movement_speed * state.step, 0))
-	if Input.is_action_pressed('move_down'):
-		add_force(Vector2(0, 0), Vector2(0, movement_speed * state.step))
-	if Input.is_action_pressed('move_right'):
-		add_force(Vector2(0, 0), Vector2(movement_speed * state.step, 0))
+	var velocity = state.get_linear_velocity()
 	
-	state.integrate_forces()
+	if Input.is_action_pressed('move_up') and velocity.y > -max_movement_speed:
+		velocity.y -= acceleration * state.step
+	if Input.is_action_pressed('move_left') and velocity.x > -max_movement_speed:
+		velocity.x -= acceleration * state.step
+	if Input.is_action_pressed('move_down') and velocity.y < max_movement_speed:
+		velocity.y += acceleration * state.step
+	if Input.is_action_pressed('move_right') and velocity.x < max_movement_speed:
+		velocity.x += acceleration * state.step
+	
+	velocity += state.get_total_gravity() * state.step
+	state.set_linear_velocity(velocity)
