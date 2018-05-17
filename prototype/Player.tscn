@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://prototype/Player.gd" type="Script" id=1]
+[ext_resource path="res://prototype/Sword.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -54,6 +55,12 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0.0490265, 0.738281, 0.0597961, 1 )
+
+[node name="Sword" parent="." index="2" instance=ExtResource( 2 )]
+
+position = Vector2( 15, 1.95565 )
+rotation = 1.09348
+_sections_unfolded = [ "Collision", "Transform" ]
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 

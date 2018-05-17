@@ -6,14 +6,21 @@ export (bool) var allow_jetpack = true
 
 
 var is_using_jetpack = false
+var is_left = false
 
 
 func _integrate_forces(state):
 	var velocity = state.get_linear_velocity()
 	
 	if Input.is_action_pressed('move_left') and velocity.x > -max_movement_speed:
+		if not is_left:
+			$Sword.position.x = -$Sword.position.x
+			is_left = true
 		velocity.x -= acceleration * state.step
 	if Input.is_action_pressed('move_right') and velocity.x < max_movement_speed:
+		if is_left:
+			$Sword.position.x = -$Sword.position.x
+			is_left = false
 		velocity.x += acceleration * state.step
 	if Input.is_action_just_pressed('toggle_jetpack') and allow_jetpack:
 		is_using_jetpack = not is_using_jetpack
@@ -30,3 +37,8 @@ func _integrate_forces(state):
 	
 	velocity += state.get_total_gravity() * state.step
 	state.set_linear_velocity(velocity)
+
+
+func _input(ev):
+	if ev is InputEventMouseMotion:
+		$Sword.rotation = position.angle_to_point(ev.position) - PI/2

@@ -85,7 +85,6 @@ scale = Vector2( 0.999999, 1 )
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 138.625, 415.875 )
-allow_jetpack = true
 
 [node name="Enemy" parent="." index="2" instance=ExtResource( 3 )]
 
