@@ -5,17 +5,25 @@ export (int) var acceleration = 1000
 export (bool) var allow_jetpack = true
 
 
+signal spawn_mouse_thing(thing)
+
+
 var is_using_jetpack = false
 var attacking_mouse_pos = null
 var following_mouse = false
+var mouse_point_thing
 
 
 func _process(delta):
 	if Input.is_action_just_pressed('attack'):
 		attacking_mouse_pos = get_global_mouse_position()
+		mouse_point_thing = preload('res://prototype/MouseGripPoint.tscn').instance()
+		mouse_point_thing.position = attacking_mouse_pos
+		emit_signal('spawn_mouse_thing', mouse_point_thing)
 	if Input.is_action_just_released('attack'):
 		attacking_mouse_pos = null
 		following_mouse = false
+		mouse_point_thing.queue_free()
 
 
 func _integrate_forces(state):
