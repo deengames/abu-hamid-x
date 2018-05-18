@@ -68,9 +68,9 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-max_movement_speed = 600
-acceleration = 1000
-float_down_speed = 20
+max_movement_speed = 800
+acceleration = 2000
+float_down_speed = 50
 allow_jetpack = true
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]

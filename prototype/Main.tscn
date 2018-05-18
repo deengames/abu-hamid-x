@@ -87,7 +87,9 @@ scale = Vector2( 0.999999, 1 )
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 138.625, 415.875 )
-float_down_speed = 20
+max_movement_speed = 800
+acceleration = 2000
+float_down_speed = 50
 
 [node name="Enemy" parent="." index="2" instance=ExtResource( 4 )]
 
