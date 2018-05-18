@@ -45,6 +45,9 @@ func _integrate_forces(state):
 	
 	velocity += state.get_total_gravity() * state.step
 	state.set_linear_velocity(velocity)
+	
+	if Input.is_action_just_released('jump'):
+		apply_impulse(Vector2(0, 0), Vector2(0, -200))
 
 
 func _input(ev):
