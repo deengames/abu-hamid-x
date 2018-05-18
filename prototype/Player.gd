@@ -2,6 +2,7 @@ extends RigidBody2D
 
 export (int) var max_movement_speed = 600
 export (int) var acceleration = 1000
+export (float) var float_down_speed = 20
 export (bool) var allow_jetpack = true
 
 
@@ -35,6 +36,7 @@ func _integrate_forces(state):
 		velocity.x += acceleration * state.step
 	if Input.is_action_just_pressed('toggle_jetpack') and allow_jetpack:
 		is_using_jetpack = not is_using_jetpack
+		gravity_scale = 0 if is_using_jetpack else 1
 	
 	if is_using_jetpack:
 		if Input.is_action_pressed('move_up') and velocity.y > -max_movement_speed:
@@ -45,6 +47,12 @@ func _integrate_forces(state):
 		rotate(velocity.x / max_movement_speed)
 	
 	$Collision.rotation = rotation
+	
+	if is_using_jetpack :
+		velocity = Vector2(lerp(velocity.x, 0, 0.05), lerp(velocity.y, 0, 0.05))
+		if velocity.abs() < Vector2(5, 5):
+			velocity = Vector2(0, float_down_speed)
+	
 	
 	velocity += state.get_total_gravity() * state.step
 	state.set_linear_velocity(velocity)
