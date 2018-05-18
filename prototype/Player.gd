@@ -10,11 +10,10 @@ var is_left = false
 
 
 func _process(delta):
-	if Input.is_action_pressed('attack'):
-		if not is_left:
-			$Anim.play('Swing Sword Right')
-		else:
-			$Anim.play('Swing Sword Left')
+	if Input.is_action_pressed('attack_left'):
+		$Anim.play('Swing Sword Left')
+	elif Input.is_action_pressed('attack_right'):
+		$Anim.play('Swing Sword Right')
 
 
 func _integrate_forces(state):
