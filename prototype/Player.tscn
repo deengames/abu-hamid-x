@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://prototype/Player.gd" type="Script" id=1]
 [ext_resource path="res://prototype/Sword.tscn" type="PackedScene" id=2]
@@ -7,6 +7,44 @@
 
 custom_solver_bias = 0.0
 extents = Vector2( 20, 30 )
+
+[sub_resource type="Animation" id=3]
+
+resource_name = "Swing Sword Left"
+length = 0.2
+loop = false
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sword:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -200.0, -30.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+
+resource_name = "Swing Sword Left"
+length = 0.2
+loop = false
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sword:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -128.0, -340.0 ]
+}
 
 [node name="Player" type="RigidBody2D" index="0"]
 
@@ -58,9 +96,20 @@ color = Color( 0.0490265, 0.738281, 0.0597961, 1 )
 
 [node name="Sword" parent="." index="2" instance=ExtResource( 2 )]
 
-position = Vector2( 15, 1.95565 )
-rotation = 1.09348
+position = Vector2( 10.0362, 7.21145 )
+rotation = -0.523599
 _sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="Anim" type="AnimationPlayer" parent="." index="3"]
+
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+"anims/Swing Sword Left" = SubResource( 3 )
+"anims/Swing Sword Right" = SubResource( 2 )
+blend_times = [  ]
 
 [connection signal="body_entered" from="." to="." method="_on_Player_body_entered"]
 

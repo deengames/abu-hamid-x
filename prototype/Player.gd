@@ -9,6 +9,14 @@ var is_using_jetpack = false
 var is_left = false
 
 
+func _process(delta):
+	if Input.is_action_pressed('attack'):
+		if not is_left:
+			$Anim.play('Swing Sword Right')
+		else:
+			$Anim.play('Swing Sword Left')
+
+
 func _integrate_forces(state):
 	var velocity = state.get_linear_velocity()
 	
@@ -32,6 +40,7 @@ func _integrate_forces(state):
 			velocity.y += acceleration * state.step
 	
 		rotate(velocity.x / max_movement_speed)
+	
 	
 	$Collision.rotation = rotation
 	
