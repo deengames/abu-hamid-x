@@ -46,7 +46,7 @@ tracks/0/keys = {
 "values": [ -128.0, -340.0 ]
 }
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="RigidBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -96,8 +96,8 @@ color = Color( 0.0490265, 0.738281, 0.0597961, 1 )
 
 [node name="Sword" parent="." index="2" instance=ExtResource( 2 )]
 
-position = Vector2( 10.0362, 7.21145 )
-rotation = -0.523599
+position = Vector2( 0, 0 )
+rotation = 4.11898
 _sections_unfolded = [ "Collision", "Transform" ]
 
 [node name="Anim" type="AnimationPlayer" parent="." index="3"]
