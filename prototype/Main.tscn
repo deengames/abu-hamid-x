@@ -4,7 +4,7 @@
 [ext_resource path="res://prototype/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prototype/Enemy.tscn" type="PackedScene" id=3]
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 [node name="Walls" type="Node2D" parent="." index="0"]
 
@@ -29,7 +29,7 @@ position = Vector2( -40.3049, -116.545 )
 "wall",
 ] instance=ExtResource( 1 )]
 
-position = Vector2( 634.414, -540.267 )
+position = Vector2( 634.414, -537.176 )
 
 [node name="Wall5" parent="Walls" index="3" groups=[
 "wall",
@@ -82,7 +82,7 @@ scale = Vector2( 0.999999, 1 )
 
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
-position = Vector2( 138.625, 415.875 )
+position = Vector2( 512.62, 301.513 )
 
 [node name="Enemy" parent="." index="2" instance=ExtResource( 3 )]
 

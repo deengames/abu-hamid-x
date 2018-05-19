@@ -54,4 +54,4 @@ func _integrate_forces(state):
 
 func _input(ev):
 	if ev is InputEventMouseMotion and attacking:
-		$Sword.rotation = position.angle_to_point(ev.position) - PI/2
+		$Sword.rotation = global_position.angle_to_point(get_global_mouse_position()) - PI/2
