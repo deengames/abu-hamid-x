@@ -16,8 +16,8 @@ rotation = 1.5708
 _sections_unfolded = [ "Transform" ]
 
 [node name="Wall" parent="Walls" index="0" groups=[
-"wall",
 "floor",
+"wall",
 ] instance=ExtResource( 2 )]
 
 position = Vector2( 591.245, -188.35 )
@@ -29,8 +29,8 @@ position = Vector2( 591.245, -188.35 )
 position = Vector2( 5.01044, -192.071 )
 
 [node name="Wall2" parent="Walls" index="2" groups=[
-"wall",
 "floor",
+"wall",
 ] instance=ExtResource( 2 )]
 
 position = Vector2( 591.245, -556.171 )
@@ -42,8 +42,8 @@ position = Vector2( 591.245, -556.171 )
 position = Vector2( 5.01044, -557.841 )
 
 [node name="Wall3" parent="Walls" index="4" groups=[
-"wall",
 "floor",
+"wall",
 ] instance=ExtResource( 2 )]
 
 position = Vector2( 591.245, -838.432 )
@@ -87,14 +87,9 @@ scale = Vector2( 0.999999, 1 )
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 138.625, 415.875 )
-max_movement_speed = 800
-acceleration = 2000
-float_down_speed = 50
 
 [node name="Enemy" parent="." index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 827.035, 418.062 )
-
-[connection signal="spawn_mouse_thing" from="Player" to="." method="_on_Player_spawn_mouse_thing"]
 
 

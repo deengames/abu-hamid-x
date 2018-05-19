@@ -3,7 +3,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 3, 40 )
+extents = Vector2( 3, 30 )
 
 [node name="Sword" type="KinematicBody2D"]
 
@@ -22,7 +22,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = -3.0
-margin_top = -77.0
+margin_top = -57.0
 margin_right = 3.0
 margin_bottom = 3.0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -36,7 +36,7 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( 0, -37 )
+position = Vector2( 0, -27 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 

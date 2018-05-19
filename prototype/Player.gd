@@ -6,29 +6,18 @@ export (float) var float_down_speed = 50
 export (bool) var allow_jetpack = true
 
 
-signal spawn_mouse_thing(thing)
-
-
 var is_using_jetpack = false
-var attacking_mouse_pos = null
-var following_mouse = false
+var attacking = false
 var mouse_point_thing
-
-
-func _ready():
-	gravity_scale = 2
+onready var orig_sword_rotation = $Sword.rotation
 
 
 func _process(delta):
 	if Input.is_action_just_pressed('attack'):
-		attacking_mouse_pos = get_global_mouse_position()
-		mouse_point_thing = preload('res://prototype/MouseGripPoint.tscn').instance()
-		mouse_point_thing.position = attacking_mouse_pos
-		emit_signal('spawn_mouse_thing', mouse_point_thing)
+		attacking = true
 	if Input.is_action_just_released('attack'):
-		attacking_mouse_pos = null
-		following_mouse = false
-		mouse_point_thing.queue_free()
+		attacking = false
+		$Sword.rotation = orig_sword_rotation
 
 
 func _integrate_forces(state):
@@ -64,7 +53,5 @@ func _integrate_forces(state):
 
 
 func _input(ev):
-	if ev is InputEventMouseMotion and attacking_mouse_pos != null:
-		if attacking_mouse_pos.distance_to(ev.position) > 50 or following_mouse:
-			following_mouse = true
-			$Sword.rotation = attacking_mouse_pos.angle_to_point(ev.position) - PI/2
+	if ev is InputEventMouseMotion and attacking:
+		$Sword.rotation = position.angle_to_point(ev.position) - PI/2
