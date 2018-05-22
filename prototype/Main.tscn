@@ -5,7 +5,7 @@
 [ext_resource path="res://prototype/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prototype/Enemy.tscn" type="PackedScene" id=4]
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -87,6 +87,8 @@ scale = Vector2( 0.999999, 1 )
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 510.481, 301.267 )
+jetpack_consumption_rate = 25
+jetpack_recharge_rate = 200
 
 [node name="Enemy" parent="." index="2" instance=ExtResource( 4 )]
 

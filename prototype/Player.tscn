@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 20, 30 )
 
-[node name="Player" type="RigidBody2D"]
+[node name="Player" type="RigidBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -34,8 +34,8 @@ acceleration = 2000
 float_down_speed = 50
 allow_jetpack = true
 max_jetpack_fuel = 500
-jetpack_consumption_rate = 50
-jetpack_recharge_rate = 100
+jetpack_consumption_rate = 25
+jetpack_recharge_rate = 200
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
 

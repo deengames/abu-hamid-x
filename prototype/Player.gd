@@ -6,8 +6,8 @@ export (float) var float_down_speed = 50
 export (bool) var allow_jetpack = true
 
 export (int) var max_jetpack_fuel = 500
-export (int) var jetpack_consumption_rate = 50
-export (int) var jetpack_recharge_rate = 100
+export (int) var jetpack_consumption_rate = 25
+export (int) var jetpack_recharge_rate = 200
 
 
 signal fuel_change(new_fuel, max_fuel)
@@ -38,13 +38,11 @@ func _integrate_forces(state):
 	if not is_using_jetpack:
 		if fuel < max_jetpack_fuel:
 			fuel += jetpack_recharge_rate * state.step
-	fuel = clamp(fuel, 0, max_jetpack_fuel)
+	fuel = clamp(fuel, 0, max_jetpack_fuel + 1)
 	
 	var gained_velocity = acceleration * state.step
-	var lost_fuel = jetpack_consumption_rate * state.step
 	if Input.is_action_pressed('boost'):
 		gained_velocity *= 2
-		lost_fuel *= 4
 	
 	if Input.is_action_pressed('move_left') and velocity.x > -max_movement_speed:
 		velocity.x -= gained_velocity
@@ -64,8 +62,9 @@ func _integrate_forces(state):
 	
 	$Collision.rotation = rotation
 	
+	var lost_fuel = jetpack_consumption_rate * state.step
 	if is_using_jetpack and velocity.abs().length() < 20:
-		lost_fuel /= 2
+		lost_fuel /= 6
 		velocity = Vector2(0, float_down_speed)
 	
 	velocity = Vector2(lerp(velocity.x, 0, 0.05), lerp(velocity.y, 0, 0.05))
@@ -74,11 +73,20 @@ func _integrate_forces(state):
 	
 	if Input.is_action_just_released('jump'):
 		apply_impulse(Vector2(0, 0), Vector2(0, -200))
-		
-	if is_using_jetpack:
-		fuel -= lost_fuel
-		if fuel <= 0:
-			is_using_jetpack = false
-			gravity_scale = 2
+	
+	if is_using_jetpack and (
+		Input.is_action_pressed('move_left') 
+		or Input.is_action_pressed('move_right')
+		or Input.is_action_pressed('move_up')
+		or Input.is_action_pressed('move_down')
+		):
+		lost_fuel *= 2
+		if Input.is_action_pressed('boost'):
+			lost_fuel *= 4
+	
+	fuel -= lost_fuel
+	if fuel <= 0:
+		is_using_jetpack = false
+		gravity_scale = 2
 	
 	emit_signal('fuel_change', fuel, max_jetpack_fuel)
