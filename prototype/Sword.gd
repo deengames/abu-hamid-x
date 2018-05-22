@@ -7,7 +7,7 @@ var step
 
 func swing_to(angle):
 	target_angle = angle
-	step = angle / 15
+	step = PI / 5
 
 func _physics_process(delta):
 	if rotation < target_angle:

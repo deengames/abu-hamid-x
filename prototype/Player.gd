@@ -14,7 +14,7 @@ func _process(delta):
 	if Input.is_action_just_pressed('attack'):
 		add_child(sword)
 		sword.connect('finish_swing', self, '_on_sword_finish_swing')
-		var starting_angle = get_angle_to(get_global_mouse_position()) + 2 * PI
+		var starting_angle = get_angle_to(get_global_mouse_position())
 		var target_angle = starting_angle + PI
 		sword.rotation = starting_angle
 		sword.swing_to(target_angle)
