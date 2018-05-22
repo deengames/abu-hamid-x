@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://prototype/Sword.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -7,13 +9,15 @@ extents = Vector2( 3, 30 )
 
 [node name="Sword" type="KinematicBody2D"]
 
+show_behind_parent = true
 position = Vector2( 0.323532, 0 )
 rotation = -0.000376087
 input_pickable = false
 collision_layer = 2
 collision_mask = 2
 collision/safe_margin = 0.08
-_sections_unfolded = [ "Collision" ]
+script = ExtResource( 1 )
+_sections_unfolded = [ "Visibility" ]
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 

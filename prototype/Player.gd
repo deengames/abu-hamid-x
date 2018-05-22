@@ -7,17 +7,21 @@ export (bool) var allow_jetpack = true
 
 
 var is_using_jetpack = false
-var attacking = false
-var mouse_point_thing
-onready var orig_sword_rotation = $Sword.rotation
+onready var sword = preload('res://prototype/Sword.tscn').instance()
 
 
 func _process(delta):
 	if Input.is_action_just_pressed('attack'):
-		attacking = true
-	if Input.is_action_just_released('attack'):
-		attacking = false
-		$Sword.rotation = orig_sword_rotation
+		add_child(sword)
+		sword.connect('finish_swing', self, '_on_sword_finish_swing')
+		var starting_angle = get_angle_to(get_global_mouse_position()) + 2 * PI
+		var target_angle = starting_angle + PI
+		sword.rotation = starting_angle
+		sword.swing_to(target_angle)
+
+
+func _on_sword_finish_swing():
+	remove_child(sword)
 
 
 func _integrate_forces(state):
@@ -50,8 +54,3 @@ func _integrate_forces(state):
 	
 	if Input.is_action_just_released('jump'):
 		apply_impulse(Vector2(0, 0), Vector2(0, -200))
-
-
-func _input(ev):
-	if ev is InputEventMouseMotion and attacking:
-		$Sword.rotation = global_position.angle_to_point(get_global_mouse_position()) - PI/2
