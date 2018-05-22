@@ -27,19 +27,23 @@ func _on_sword_finish_swing():
 func _integrate_forces(state):
 	var velocity = state.get_linear_velocity()
 	
+	var gained_velocity = acceleration * state.step
+	if Input.is_action_pressed('boost'):
+		gained_velocity *= 2
+	
 	if Input.is_action_pressed('move_left') and velocity.x > -max_movement_speed:
-		velocity.x -= acceleration * state.step
+		velocity.x -= gained_velocity
 	if Input.is_action_pressed('move_right') and velocity.x < max_movement_speed:
-		velocity.x += acceleration * state.step
+		velocity.x += gained_velocity
 	if Input.is_action_just_pressed('toggle_jetpack') and allow_jetpack:
 		is_using_jetpack = not is_using_jetpack
 		gravity_scale = 0 if is_using_jetpack else 2
 	
 	if is_using_jetpack:
 		if Input.is_action_pressed('move_up') and velocity.y > -max_movement_speed:
-			velocity.y -= acceleration * state.step
+			velocity.y -= gained_velocity
 		if Input.is_action_pressed('move_down') and velocity.y < max_movement_speed:
-			velocity.y += acceleration * state.step
+			velocity.y += gained_velocity
 	
 		rotate(velocity.x / max_movement_speed)
 	

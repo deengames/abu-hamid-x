@@ -38,7 +38,7 @@ allow_jetpack = true
 
 shape = SubResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="." index="1"]
+[node name="FakeSprite" type="ColorRect" parent="." index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
