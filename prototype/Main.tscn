@@ -4,7 +4,7 @@
 [ext_resource path="res://prototype/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prototype/Enemy.tscn" type="PackedScene" id=3]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 [node name="Walls" type="Node2D" parent="." index="0"]
 
@@ -13,8 +13,8 @@ rotation = 1.5708
 _sections_unfolded = [ "Transform" ]
 
 [node name="Wall" parent="Walls" index="0" groups=[
-"floor",
 "wall",
+"floor",
 ] instance=ExtResource( 1 )]
 
 position = Vector2( 634.414, -163.357 )
@@ -26,8 +26,8 @@ position = Vector2( 634.414, -163.357 )
 position = Vector2( -40.3049, -116.545 )
 
 [node name="Wall2" parent="Walls" index="2" groups=[
-"floor",
 "wall",
+"floor",
 ] instance=ExtResource( 1 )]
 
 position = Vector2( 634.414, -537.176 )
@@ -39,11 +39,11 @@ position = Vector2( 634.414, -537.176 )
 position = Vector2( -40.3049, -497.42 )
 
 [node name="Wall3" parent="Walls" index="4" groups=[
-"floor",
 "wall",
+"floor",
 ] instance=ExtResource( 1 )]
 
-position = Vector2( 634.414, -908.866 )
+position = Vector2( 634.414, -909.465 )
 
 [node name="Wall4" parent="Walls" index="5" groups=[
 "wall",
@@ -62,7 +62,7 @@ rotation = 1.5708
 "wall",
 ] instance=ExtResource( 1 )]
 
-position = Vector2( 105.445, -1061.87 )
+position = Vector2( 113.814, -1061.87 )
 rotation = 1.5708
 scale = Vector2( 0.999999, 1 )
 
@@ -83,10 +83,10 @@ scale = Vector2( 0.999999, 1 )
 
 [node name="Player" parent="." index="1" instance=ExtResource( 2 )]
 
-position = Vector2( 512.62, 301.513 )
+position = Vector2( 510.481, 301.267 )
 
 [node name="Enemy" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 827.035, 418.062 )
+position = Vector2( 832.523, 471.626 )
 
 
