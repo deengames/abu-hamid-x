@@ -12,6 +12,7 @@ script = ExtResource( 1 )
 
 [node name="Walls" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
 rotation = 1.5708
 _sections_unfolded = [ "Transform" ]
 
@@ -84,15 +85,14 @@ rotation = 1.5708
 
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 510.481, 301.267 )
+position = Vector2( 520, 240 )
 
 [node name="Enemy" parent="." index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 832.523, 471.626 )
+position = Vector2( 970, 490 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="3"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -107,7 +107,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 15.0
 margin_top = 10.0
-margin_right = 40.0
+margin_right = 83.0
 margin_bottom = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -121,7 +121,5 @@ lines_skipped = 0
 max_lines_visible = -1
 script = ExtResource( 5 )
 _sections_unfolded = [ "Margin" ]
-
-[connection signal="fuel_change" from="Player" to="CanvasLayer/FuelLabel" method="_on_Player_fuel_change"]
 
 

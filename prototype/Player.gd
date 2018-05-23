@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends "Character.gd"
 
 export (int) var max_movement_speed = 800
 export (int) var acceleration = 2000
