@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 20, 30 )
 
-[node name="Player" type="RigidBody2D" index="0"]
+[node name="Player" type="RigidBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -64,7 +64,7 @@ color = Color( 0.0490265, 0.738281, 0.0597961, 1 )
 anchor_mode = 1
 rotating = false
 current = true
-zoom = Vector2( 1, 1 )
+zoom = Vector2( 1.5, 1.5 )
 limit_left = -10000000
 limit_top = -10000000
 limit_right = 10000000

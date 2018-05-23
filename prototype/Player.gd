@@ -72,7 +72,7 @@ func _integrate_forces(state):
 	state.set_linear_velocity(velocity)
 	
 	if Input.is_action_just_released('jump'):
-		apply_impulse(Vector2(0, 0), Vector2(0, -200))
+		apply_impulse(Vector2(0, 0), Vector2(0, -600))
 	
 	if is_using_jetpack and (
 		Input.is_action_pressed('move_left') 
@@ -82,7 +82,7 @@ func _integrate_forces(state):
 		):
 		lost_fuel *= 2
 		if Input.is_action_pressed('boost'):
-			lost_fuel *= 4
+			lost_fuel *= 2
 	
 	fuel -= lost_fuel
 	if fuel <= 0:

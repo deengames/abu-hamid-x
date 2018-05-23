@@ -5,12 +5,12 @@
 custom_solver_bias = 0.0
 extents = Vector2( 20, 30 )
 
-[node name="Enemy" type="RigidBody2D"]
+[node name="Enemy" type="RigidBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 3
 collision_mask = 1
-mode = 0
+mode = 2
 mass = 1.0
 friction = 1.0
 bounce = 0.0
