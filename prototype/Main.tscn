@@ -3,7 +3,7 @@
 [ext_resource path="res://prototype/Main.gd" type="Script" id=1]
 [ext_resource path="res://prototype/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prototype/Character/Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://prototype/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://prototype/Character/Enemy/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://prototype/FuelLabel.gd" type="Script" id=5]
 
 [node name="Main" type="Node2D"]
@@ -59,33 +59,37 @@ position = Vector2( -551.533, -1829.86 )
 "wall",
 ] instance=ExtResource( 2 )]
 
-position = Vector2( -260.76, 374.286 )
+position = Vector2( -249.921, 336.663 )
 rotation = 1.5708
 
 [node name="Wall14" parent="Walls" index="7" groups=[
 "wall",
 ] instance=ExtResource( 2 )]
 
-position = Vector2( -259.93, -2363.34 )
+position = Vector2( -259.93, -2303.34 )
 rotation = 1.5708
 
 [node name="Wall8" parent="Walls" index="8" groups=[
 "wall",
 ] instance=ExtResource( 2 )]
 
-position = Vector2( 568.046, 374.621 )
+position = Vector2( 578.885, 336.998 )
 rotation = 1.5708
 
 [node name="Wall15" parent="Walls" index="9" groups=[
 "wall",
 ] instance=ExtResource( 2 )]
 
-position = Vector2( 568.877, -2363 )
+position = Vector2( 568.877, -2303 )
 rotation = 1.5708
 
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 520, 240 )
+mass = 1.0
+friction = 1.0
+contacts_reported = 0
+contact_monitor = false
 
 [node name="Enemy" parent="." index="2" instance=ExtResource( 4 )]
 
@@ -93,6 +97,7 @@ position = Vector2( 970, 490 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." index="3"]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0

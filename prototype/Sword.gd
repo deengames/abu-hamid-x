@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+export (int) var damage_to_deal = 2
+
 signal finish_swing
 
 var target_angle

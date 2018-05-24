@@ -10,6 +10,7 @@ extents = Vector2( 20, 30 )
 
 [node name="Player" instance=ExtResource( 1 )]
 
+gravity_scale = 2.0
 script = ExtResource( 2 )
 max_movement_speed = 800
 acceleration = 2000
