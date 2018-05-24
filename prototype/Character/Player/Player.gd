@@ -20,6 +20,7 @@ onready var sword = preload('res://prototype/Sword.tscn').instance()
 
 func _ready():
 	sword.connect('finish_swing', self, '_on_sword_finish_swing')
+	_register_damaging_group('enemies')
 
 
 func _process(delta):

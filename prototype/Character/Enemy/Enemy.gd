@@ -1,6 +1,8 @@
 extends "../Character.gd"
 
 
-func _on_body_entered(body):
-	if body.is_in_group('sword'):
-		_damage(body.damage_to_deal)
+export (int) var damage_to_deal = 2
+
+
+func _ready():
+	_register_damaging_group('sword')

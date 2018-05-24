@@ -6,7 +6,7 @@
 [ext_resource path="res://prototype/Character/Enemy/Enemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://prototype/FuelLabel.gd" type="Script" id=5]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -86,10 +86,6 @@ rotation = 1.5708
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 520, 240 )
-mass = 1.0
-friction = 1.0
-contacts_reported = 0
-contact_monitor = false
 
 [node name="Enemy" parent="." index="2" instance=ExtResource( 4 )]
 

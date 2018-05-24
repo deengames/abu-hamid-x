@@ -2,7 +2,7 @@
 
 [ext_resource path="res://prototype/Character/Character.gd" type="Script" id=1]
 
-[node name="Character" type="RigidBody2D" index="0"]
+[node name="Character" type="RigidBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -45,5 +45,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "Rect" ]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 
 
