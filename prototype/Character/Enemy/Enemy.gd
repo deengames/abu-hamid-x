@@ -1,19 +1,21 @@
 extends "../Character.gd"
 
 
-export (int) var damage_to_deal = 2
+export (int) var damage_to_deal = 1
 export (float) var movement_speed = 20
 
 
-var player
+onready var player = get_parent().get_node('Player')
 
 
 func _ready():
+	var width = ProjectSettings.get_setting('display/window/size/width')
+	var height = ProjectSettings.get_setting('display/window/size/height')
+	var new_pos = player.position
+	while new_pos.distance_to(player.position) < 300:
+		new_pos = Vector2(rand_range(0, width), rand_range(0, height))
+	position = new_pos
 	_register_damaging_group('sword')
-
-
-func set_player(player_):
-	player = player_
 
 
 func _integrate_forces(state):

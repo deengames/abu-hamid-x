@@ -1,13 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://prototype/Main.gd" type="Script" id=1]
 [ext_resource path="res://prototype/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prototype/Character/Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://prototype/Character/Enemy/Enemy.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Node2D"]
 
 script = ExtResource( 1 )
+waves_per_game = 10
+enemies_in_first_wave = 3
+increment_per_wave = 1
 
 [node name="Walls" type="Node2D" parent="." index="0"]
 
@@ -86,8 +88,13 @@ rotation = 1.5708
 
 position = Vector2( 520, 240 )
 
-[node name="Enemy" parent="." index="2" instance=ExtResource( 4 )]
+[node name="WaveSpawnTimer" type="Timer" parent="." index="2"]
 
-position = Vector2( 970, 490 )
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="WaveSpawnTimer" to="." method="_new_wave"]
 
 

@@ -2,9 +2,12 @@ extends RigidBody2D
 
 export (int) var max_health = 10
 
+signal death
+
 # all variables depending on exported stuff need to be marked with
 # onready; if it's overridden, it'll keep the superclass's value
 onready var health = max_health
+
 var damaging_groups = []
 
 func _register_damaging_group(group_name):
@@ -16,8 +19,12 @@ func _unregister_damaging_group(group_name):
 		damaging_groups.remove(group_name)
 
 
-func _death():
+func _free():
 	queue_free()
+
+func _death():
+	emit_signal('death')
+	_free()
 
 
 func _damage(dmg_points):

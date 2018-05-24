@@ -19,7 +19,7 @@ var is_dead = false
 onready var sword = preload('res://prototype/Sword.tscn').instance()
 
 
-func _death():
+func _free():
 	$ui/DeathLabel.visible = true
 	visible = false
 	is_dead = true
