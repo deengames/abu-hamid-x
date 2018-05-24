@@ -18,14 +18,6 @@ var is_using_jetpack = false
 var fuel = max_jetpack_fuel
 var is_dead = false
 onready var sword = preload('res://prototype/Sword.tscn').instance()
-var is_boosting = false
-
-
-func boost():
-	if not is_boosting:
-		is_boosting = true
-		sword.damage_to_deal *= 4
-		
 
 
 func _free():
@@ -66,10 +58,6 @@ func _integrate_forces(state):
 	var gained_velocity = acceleration * state.step
 	if Input.is_action_pressed('boost'):
 		gained_velocity *= 2
-		boost()
-	else:
-		sword.damage_to_deal = sword.damage
-		is_boosting = false
 	
 	if Input.is_action_pressed('move_left') and velocity.x > -max_movement_speed:
 		velocity.x -= gained_velocity
@@ -115,6 +103,8 @@ func _integrate_forces(state):
 	if fuel <= 0:
 		is_using_jetpack = false
 		gravity_scale = 2
+	
+	sword.damage_to_deal = sword.damage + velocity.length() / 200
 	
 	emit_signal('fuel_change', fuel, max_jetpack_fuel)
 	emit_signal('health_change', health, max_health)
