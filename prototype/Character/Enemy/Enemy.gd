@@ -18,6 +18,10 @@ func _ready():
 	_register_damaging_group('sword')
 
 
+func _process(delta):
+	$HealthBar.value = health
+
+
 func _integrate_forces(state):
 	var velocity = state.get_linear_velocity()
 	
