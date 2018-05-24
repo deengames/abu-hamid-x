@@ -1,12 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://prototype/Main.gd" type="Script" id=1]
 [ext_resource path="res://prototype/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prototype/Character/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prototype/Character/Enemy/Enemy.tscn" type="PackedScene" id=4]
-[ext_resource path="res://prototype/FuelLabel.gd" type="Script" id=5]
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -90,39 +89,5 @@ position = Vector2( 520, 240 )
 [node name="Enemy" parent="." index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 970, 490 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." index="3"]
-
-editor/display_folded = true
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-
-[node name="FuelLabel" type="Label" parent="CanvasLayer" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 15.0
-margin_top = 10.0
-margin_right = 83.0
-margin_bottom = 24.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-text = "FUEL: 0 / 0"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-script = ExtResource( 5 )
-_sections_unfolded = [ "Margin" ]
-
-[connection signal="fuel_change" from="Player" to="CanvasLayer/FuelLabel" method="_on_Player_fuel_change"]
 
 

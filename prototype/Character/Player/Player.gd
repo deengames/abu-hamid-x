@@ -15,12 +15,22 @@ signal fuel_change(new_fuel, max_fuel)
 
 var is_using_jetpack = false
 var fuel = max_jetpack_fuel
+var is_dead = false
 onready var sword = preload('res://prototype/Sword.tscn').instance()
+
+
+func _death():
+	$ui/DeathLabel.visible = true
+	visible = false
+	is_dead = true
 
 
 func _ready():
 	sword.connect('finish_swing', self, '_on_sword_finish_swing')
 	_register_damaging_group('enemies')
+	var width = ProjectSettings.get_setting('display/window/size/width')
+	var height = ProjectSettings.get_setting('display/window/size/height')
+	$ui/DeathLabel.rect_position = (Vector2(width, height) - $ui/DeathLabel.rect_size) / 2
 
 
 func _process(delta):
@@ -37,6 +47,7 @@ func _on_sword_finish_swing():
 
 
 func _integrate_forces(state):
+	
 	var velocity = state.get_linear_velocity()
 	
 	if not is_using_jetpack:
@@ -94,3 +105,8 @@ func _integrate_forces(state):
 		gravity_scale = 2
 	
 	emit_signal('fuel_change', fuel, max_jetpack_fuel)
+
+func _unhandled_key_input(event):
+	if is_dead:
+		get_tree().change_scene('res://prototype/Main.tscn')
+		return true
