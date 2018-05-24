@@ -8,7 +8,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 20, 30 )
 
-[node name="Enemy" groups=[
+[node name="Enemy" index="0" groups=[
 "enemies",
 ] instance=ExtResource( 1 )]
 
@@ -17,6 +17,7 @@ collision_mask = 3
 script = ExtResource( 2 )
 max_health = 6
 damage_to_deal = 2
+movement_speed = 20
 
 [node name="Collision" parent="." index="0"]
 

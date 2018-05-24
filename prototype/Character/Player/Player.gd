@@ -47,7 +47,6 @@ func _on_sword_finish_swing():
 
 
 func _integrate_forces(state):
-	
 	var velocity = state.get_linear_velocity()
 	
 	if not is_using_jetpack:
@@ -109,4 +108,3 @@ func _integrate_forces(state):
 func _unhandled_key_input(event):
 	if is_dead:
 		get_tree().change_scene('res://prototype/Main.tscn')
-		return true
