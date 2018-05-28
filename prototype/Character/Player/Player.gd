@@ -34,7 +34,10 @@ func _ready():
 	var width = ProjectSettings.get_setting('display/window/size/width')
 	var height = ProjectSettings.get_setting('display/window/size/height')
 	$ui/DeathLabel.rect_position = (Vector2(width, height) - $ui/DeathLabel.rect_size) / 2
-	$HealthRegenTimer.wait_time = 1/health_regen_per_second
+	if health_regen_per_second == 0:
+		$HealthRegenTimer.autostart = false
+	else:
+		$HealthRegenTimer.wait_time = 1/health_regen_per_second
 
 
 func _process(delta):
