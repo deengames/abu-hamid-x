@@ -21,16 +21,17 @@ allow_jetpack = true
 max_jetpack_fuel = 500
 jetpack_consumption_rate = 25
 jetpack_recharge_rate = 200
+health_regen_per_second = 0.5
 
-[node name="ColorBox" parent="." index="0"]
+[node name="Collision" parent="." index="0"]
+
+shape = SubResource( 1 )
+
+[node name="ColorBox" parent="." index="1"]
 
 margin_top = -30.0
 margin_bottom = 30.0
 color = Color( 0, 1, 0, 1 )
-
-[node name="Collision" parent="." index="1"]
-
-shape = SubResource( 1 )
 
 [node name="Camera" type="Camera2D" parent="." index="2"]
 
@@ -59,6 +60,7 @@ editor_draw_drag_margin = false
 
 [node name="ui" type="CanvasLayer" parent="." index="3"]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -136,8 +138,17 @@ max_lines_visible = -1
 script = ExtResource( 4 )
 _sections_unfolded = [ "Margin" ]
 
+[node name="HealthRegenTimer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
 [connection signal="fuel_change" from="." to="ui/FuelLabel" method="_on_Player_fuel_change"]
 
 [connection signal="health_change" from="." to="ui/HealthLabel" method="_on_Player_health_change"]
+
+[connection signal="timeout" from="HealthRegenTimer" to="." method="_on_health_regen"]
 
 

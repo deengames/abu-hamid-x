@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 20, 30 )
+extents = Vector2( 15, 25 )
 
 [node name="Enemy" groups=[
 "enemies",
@@ -19,15 +19,15 @@ max_health = 6
 damage_to_deal = 1
 movement_speed = 20
 
-[node name="Collision" parent="." index="0"]
-
-shape = SubResource( 1 )
-
-[node name="ColorBox" parent="." index="1"]
+[node name="ColorBox" parent="." index="0"]
 
 margin_top = -30.0
 margin_bottom = 30.0
 color = Color( 1, 0, 0, 1 )
+
+[node name="Collision" parent="." index="1"]
+
+shape = SubResource( 1 )
 
 [node name="HealthBar" type="ProgressBar" parent="." index="2"]
 

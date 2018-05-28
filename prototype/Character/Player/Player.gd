@@ -9,6 +9,8 @@ export (int) var max_jetpack_fuel = 500
 export (int) var jetpack_consumption_rate = 25
 export (int) var jetpack_recharge_rate = 200
 
+export (float) var health_regen_per_second = 0.5
+
 
 signal fuel_change(new_fuel, max_fuel)
 signal health_change(new_hp, max_hp)
@@ -32,6 +34,7 @@ func _ready():
 	var width = ProjectSettings.get_setting('display/window/size/width')
 	var height = ProjectSettings.get_setting('display/window/size/height')
 	$ui/DeathLabel.rect_position = (Vector2(width, height) - $ui/DeathLabel.rect_size) / 2
+	$HealthRegenTimer.wait_time = 1/health_regen_per_second
 
 
 func _process(delta):
@@ -112,3 +115,8 @@ func _integrate_forces(state):
 func _unhandled_key_input(event):
 	if is_dead:
 		get_tree().change_scene('res://prototype/Main.tscn')
+
+
+func _on_health_regen():
+	if health < max_health:
+		health += 1
