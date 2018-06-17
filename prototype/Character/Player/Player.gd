@@ -28,7 +28,7 @@ func _free():
 	is_dead = true
 
 
-func _ready():
+func _ready():	
 	sword.connect('finish_swing', self, '_on_sword_finish_swing')
 	_register_damaging_group('enemies')
 	var width = ProjectSettings.get_setting('display/window/size/width')
@@ -41,7 +41,9 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed('attack'):
+	var config = get_node("/root/global").config
+	
+	if config.enableSword == true and Input.is_action_just_pressed('attack'):
 		add_child(sword)
 		var starting_angle = get_angle_to(get_global_mouse_position())
 		var target_angle = starting_angle + PI
@@ -93,7 +95,7 @@ func _integrate_forces(state):
 	state.set_linear_velocity(velocity)
 	
 	if Input.is_action_just_released('jump'):
-		apply_impulse(Vector2(0, 0), Vector2(0, -600))
+		apply_impulse(Vector2(0, 0), Vector2(0, -1500))
 	
 	if is_using_jetpack and (
 		Input.is_action_pressed('move_left') 
