@@ -30,7 +30,7 @@ func _free():
 
 func _ready():	
 	sword.connect('finish_swing', self, '_on_sword_finish_swing')
-	_register_damaging_group('enemies')
+	#register_damaging_group('enemies')
 	var width = ProjectSettings.get_setting('display/window/size/width')
 	var height = ProjectSettings.get_setting('display/window/size/height')
 	$ui/DeathLabel.rect_position = (Vector2(width, height) - $ui/DeathLabel.rect_size) / 2

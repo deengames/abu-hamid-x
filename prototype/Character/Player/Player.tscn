@@ -10,10 +10,11 @@
 custom_solver_bias = 0.0
 extents = Vector2( 15, 25 )
 
-[node name="Player" index="0" instance=ExtResource( 1 )]
+[node name="Player" instance=ExtResource( 1 )]
 
 gravity_scale = 2.0
 script = ExtResource( 2 )
+max_health = 11
 max_movement_speed = 800
 acceleration = 2000
 float_down_speed = 50

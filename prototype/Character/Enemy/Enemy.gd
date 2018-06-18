@@ -15,7 +15,7 @@ func _ready():
 	while new_pos.distance_to(player.position) < 300:
 		new_pos = Vector2(rand_range(0, width), rand_range(0, height))
 	position = new_pos
-	_register_damaging_group('sword')
+	register_damaging_group('sword')
 
 
 func _process(delta):
