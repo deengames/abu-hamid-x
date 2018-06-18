@@ -14,6 +14,10 @@ config/name="Abu Hamid X"
 run/main_scene="res://prototype/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+global="*res://prototype/global.gd"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "open-external-editor" )
