@@ -5,7 +5,7 @@ export (int) var damage_to_deal = 1
 export (float) var movement_speed = 20
 
 
-onready var player = get_parent().get_node('Player')
+onready var player = get_tree().get_root().get_node("Main").get_node('Player')
 
 
 func _ready():

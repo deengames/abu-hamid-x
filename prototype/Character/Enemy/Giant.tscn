@@ -8,6 +8,11 @@
 script = ExtResource( 2 )
 max_health = 10
 
+[node name="Collision" parent="." index="0"]
+
+position = Vector2( 162.622, 241.302 )
+scale = Vector2( 10.0345, 9.61791 )
+
 [node name="ColorBox" parent="." index="1"]
 
 margin_right = 340.0
