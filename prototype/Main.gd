@@ -12,15 +12,16 @@ onready var timer = $WaveSpawnTimer
 
 
 func _new_wave():
-	var total_enemies = enemies_in_first_wave + increment_per_wave * wave_num
-	wave_num += 1
-	for i in range(total_enemies):
-		var scene = scenes_to_spawn[randi() % len(scenes_to_spawn)]
-		var e = scene.instance()
-		add_child(e)
-		e.connect('death', self, '_on_spawned_entity_death')
-		num_spawned_entities += 1
-
+#	var total_enemies = enemies_in_first_wave + increment_per_wave * wave_num
+#	wave_num += 1
+#	for i in range(total_enemies):
+#		var scene = scenes_to_spawn[randi() % len(scenes_to_spawn)]
+#		var e = scene.instance()
+#		add_child(e)
+#		e.connect('death', self, '_on_spawned_entity_death')
+#		num_spawned_entities += 1
+	
+	self._spawn_giant()
 
 func _on_spawned_entity_death():
 	num_spawned_entities -= 1
@@ -30,3 +31,9 @@ func _process(delta):
 	if num_spawned_entities <= 0 and timer.is_stopped():
 		timer.start()
 	$ui/WaveLabel.text = "WAVE: " + str(wave_num) + ' / ' + str(waves_per_game)
+
+func _spawn_giant():
+	var scene = preload("res://prototype/Character/Enemy/Giant.tscn")
+	var e = scene.instance()
+	add_child(e)
+	num_spawned_entities = 1 # keep it from constantly spawning
