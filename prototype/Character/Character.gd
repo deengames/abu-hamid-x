@@ -9,7 +9,7 @@ signal damaged
 # onready; if it's overridden, it'll keep the superclass's value
 onready var health = max_health
 
-var damaging_groups = []
+onready var damaging_groups = []
 
 func register_damaging_group(group_name):
 	damaging_groups.append(group_name)
@@ -29,7 +29,6 @@ func _death():
 
 
 func _damage(dmg_points):
-	print("Damage to " + str(self))
 	health -= dmg_points
 	emit_signal('damaged')
 	if health <= 0:
@@ -39,5 +38,4 @@ func _damage(dmg_points):
 func _on_body_entered(body):
 	for group_name in damaging_groups:
 		if body.is_in_group(group_name):
-			print("Yahee!")
 			_damage(body.damage_to_deal)

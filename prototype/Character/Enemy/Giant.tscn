@@ -6,6 +6,7 @@
 
 [node name="Enemy" index="0" instance=ExtResource( 1 )]
 
+mass = 100.0
 script = ExtResource( 2 )
 max_health = 8
 
@@ -29,9 +30,7 @@ _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Material", "Pause"
 [node name="HitSpot" parent="." index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 338, 36 )
-max_health = 2
-
-[connection signal="body_shape_entered" from="HitSpot" to="." method="_on_HitSpot_body_shape_entered"]
+_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear" ]
 
 [connection signal="damaged" from="HitSpot" to="." method="_on_HitSpot_damaged"]
 
