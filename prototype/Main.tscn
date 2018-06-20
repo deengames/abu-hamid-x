@@ -14,7 +14,6 @@ increment_per_wave = 1
 
 [node name="Walls" type="Node2D" parent="." index="0"]
 
-editor/display_folded = true
 rotation = 1.5708
 _sections_unfolded = [ "Transform" ]
 
@@ -88,6 +87,7 @@ rotation = 1.5708
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 520, 240 )
+_sections_unfolded = [ "Collision" ]
 
 [node name="WaveSpawnTimer" type="Timer" parent="." index="2"]
 

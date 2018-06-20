@@ -10,6 +10,8 @@ var wave_num = 0
 var num_spawned_entities = 0
 onready var timer = $WaveSpawnTimer
 
+var Giant_tscn = preload("res://prototype/Character/Enemy/Giant/Giant.tscn")
+
 
 func _new_wave():
 #	var total_enemies = enemies_in_first_wave + increment_per_wave * wave_num
@@ -33,7 +35,6 @@ func _process(delta):
 	$ui/WaveLabel.text = "WAVE: " + str(wave_num) + ' / ' + str(waves_per_game)
 
 func _spawn_giant():
-	var scene = preload("res://prototype/Character/Enemy/Giant.tscn")
-	var e = scene.instance()
+	var e = Giant_tscn.instance()
 	add_child(e)
 	num_spawned_entities = 1 # keep it from constantly spawning
