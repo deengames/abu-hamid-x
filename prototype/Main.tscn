@@ -9,11 +9,12 @@
 position = Vector2( 460, 680 )
 script = ExtResource( 1 )
 waves_per_game = 10
-enemies_in_first_wave = 3
-increment_per_wave = 1
+points_in_first_wave = 1
+increment_per_wave = 2
 
 [node name="Walls" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
 rotation = 1.5708
 _sections_unfolded = [ "Transform" ]
 
@@ -87,7 +88,8 @@ rotation = 1.5708
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 520, 240 )
-_sections_unfolded = [ "Collision" ]
+num_attacks_to_fly = 3
+flying_impulse_velocity = 4500
 
 [node name="WaveSpawnTimer" type="Timer" parent="." index="2"]
 
