@@ -1,32 +1,96 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://prototype/Character/Enemy/Enemy.tscn" type="PackedScene" id=1]
-[ext_resource path="res://prototype/Character/Enemy/Giant/Giant.gd" type="Script" id=2]
+[ext_resource path="res://prototype/Character/Enemy/Giant/Giant.gd" type="Script" id=1]
+[ext_resource path="res://prototype/Character/Enemy/Giant/HitSpot.tscn" type="PackedScene" id=2]
 
-[node name="Giant" index="0" instance=ExtResource( 1 )]
+[sub_resource type="RectangleShape2D" id=1]
 
-script = ExtResource( 2 )
+custom_solver_bias = 0.0
+extents = Vector2( 15.0706, 25 )
+
+[node name="Giant" type="RigidBody2D" index="0" groups=[
+"enemies",
+]]
+
+input_pickable = false
+collision_layer = 3
+collision_mask = 3
+mode = 2
+mass = 100.0
+friction = 0.5
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 5
+contact_monitor = true
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
 max_health = 30
+damage_to_deal = 1
+movement_speed = 20
 
-[node name="Collision" parent="." index="0"]
+[node name="Collision" type="CollisionShape2D" parent="." index="0"]
 
+scale = Vector2( 10, 10 )
+shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="ColorBox" parent="." index="1"]
+[node name="ColorBox" type="ColorRect" parent="." index="1"]
 
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = -180.0
-margin_top = -270.0
+margin_top = -272.0
 margin_right = 180.0
-margin_bottom = 270.0
+margin_bottom = 268.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 color = Color( 0.501961, 0, 0, 1 )
+_sections_unfolded = [ "Rect" ]
 
-[node name="HealthBar" parent="." index="2"]
+[node name="HealthBar" type="ProgressBar" parent="." index="2"]
 
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = -180.0
 margin_top = -295.0
 margin_right = 180.0
 margin_bottom = -279.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+min_value = 0.0
 max_value = 30.0
+step = 1.0
+page = 0.0
+value = 0.0
+exp_edit = false
+rounded = false
+percent_visible = true
 _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Material", "Pause", "Rect", "Size Flags", "Theme", "Visibility", "custom_styles" ]
+
+[node name="HitSpot" parent="." index="3" instance=ExtResource( 2 )]
+
+position = Vector2( 158.938, -15.2418 )
+
+[connection signal="body_entered" from="HitSpot" to="." method="_on_HitSpot_body_entered"]
 
 

@@ -1,4 +1,5 @@
 {
     "enableSword": true,
-    "enableGiants": false
+    "enableGiants": true,
+    "flyingAttacks": true
 }

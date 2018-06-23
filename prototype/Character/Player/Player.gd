@@ -10,7 +10,8 @@ export (int) var jetpack_consumption_rate = 25
 export (int) var jetpack_recharge_rate = 200
 
 export (float) var health_regen_per_second = 0.5
-
+export (int) var num_attacks_to_fly = 3
+export (float) var flying_impulse_velocity = 4500
 
 signal fuel_change(new_fuel, max_fuel)
 signal health_change(new_hp, max_hp)
@@ -19,6 +20,10 @@ signal health_change(new_hp, max_hp)
 var is_using_jetpack = false
 var fuel = max_jetpack_fuel
 var is_dead = false
+
+var attack_number = 0 # for flying attacks
+var facing = "none"
+
 onready var sword = preload('res://prototype/Sword.tscn').instance()
 
 
@@ -30,7 +35,7 @@ func _free():
 
 func _ready():	
 	sword.connect('finish_swing', self, '_on_sword_finish_swing')
-	_register_damaging_group('enemies')
+	#register_damaging_group('enemies')
 	var width = ProjectSettings.get_setting('display/window/size/width')
 	var height = ProjectSettings.get_setting('display/window/size/height')
 	$ui/DeathLabel.rect_position = (Vector2(width, height) - $ui/DeathLabel.rect_size) / 2
@@ -49,13 +54,28 @@ func _process(delta):
 		var target_angle = starting_angle + PI
 		sword.rotation = starting_angle
 		sword.swing_to(target_angle)
+		
+		if config.flyingAttacks == true and self.facing in ["left", "right"]:
+			var vx = flying_impulse_velocity
+			if self.facing == "left":
+				vx = vx * -1
+				
+			self.attack_number += 1
+			self.attack_number = self.attack_number % num_attacks_to_fly
+			if self.attack_number == 0:
+				self.apply_impulse(Vector2(0, 0), Vector2(vx, 0))
 
 
 func _on_sword_finish_swing():
 	remove_child(sword)
 
 
-func _integrate_forces(state):
+func _integrate_forces(state):	
+	if Input.is_action_pressed('move_right'):
+		self.facing = "right"
+	elif Input.is_action_pressed('move_left'):
+		self.facing = "left"
+		
 	var velocity = state.get_linear_velocity()
 	
 	if not is_using_jetpack:
@@ -95,7 +115,7 @@ func _integrate_forces(state):
 	state.set_linear_velocity(velocity)
 	
 	if Input.is_action_just_released('jump'):
-		apply_impulse(Vector2(0, 0), Vector2(0, -1500))
+		self.apply_impulse(Vector2(0, 0), Vector2(0, -1500))
 	
 	if is_using_jetpack and (
 		Input.is_action_pressed('move_left') 
