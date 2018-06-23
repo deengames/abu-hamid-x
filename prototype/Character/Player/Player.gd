@@ -12,6 +12,7 @@ export (int) var jetpack_recharge_rate = 200
 export (float) var health_regen_per_second = 0.5
 export (int) var num_attacks_to_fly = 3
 export (float) var flying_impulse_velocity = 4500
+export (float) var flying_attack_min_velocity = 600
 
 signal fuel_change(new_fuel, max_fuel)
 signal health_change(new_hp, max_hp)
@@ -53,15 +54,14 @@ func _process(delta):
 		sword.rotation = starting_angle
 		sword.swing_to(target_angle)
 		
-		if global.config.flying_attacks == true and self.facing in ["left", "right"]:
-			var vx = flying_impulse_velocity
-			if self.facing == "left":
-				vx = vx * -1
-				
-			self.attack_number += 1
-			self.attack_number = self.attack_number % num_attacks_to_fly
-			if self.attack_number == 0:
-				self.apply_impulse(Vector2(0, 0), Vector2(vx, 0))
+		if global.config.flying_attacks == true and linear_velocity.length() > flying_attack_min_velocity:
+			attack_number += 1
+			attack_number = attack_number % num_attacks_to_fly
+			if attack_number == 0:
+				self.apply_impulse(
+					Vector2(0, 0), 
+					Vector2(flying_impulse_velocity, 0).rotated(linear_velocity.angle())
+				)
 
 
 func _on_sword_finish_swing():
