@@ -10,7 +10,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 15, 25 )
 
-[node name="Player" instance=ExtResource( 1 )]
+[node name="Player" index="0" instance=ExtResource( 1 )]
 
 gravity_scale = 2.0
 script = ExtResource( 2 )
@@ -23,6 +23,8 @@ max_jetpack_fuel = 500
 jetpack_consumption_rate = 25
 jetpack_recharge_rate = 200
 health_regen_per_second = 0.5
+num_attacks_to_fly = 3
+flying_impulse_velocity = 4500
 
 [node name="Collision" parent="." index="0"]
 
