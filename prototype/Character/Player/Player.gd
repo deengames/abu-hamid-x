@@ -46,16 +46,14 @@ func _ready():
 
 
 func _process(delta):
-	var config = get_node("/root/global").config
-	
-	if config.enableSword == true and Input.is_action_just_pressed('attack'):
+	if global.config.enable_sword == true and Input.is_action_just_pressed('attack'):
 		add_child(sword)
 		var starting_angle = get_angle_to(get_global_mouse_position())
 		var target_angle = starting_angle + PI
 		sword.rotation = starting_angle
 		sword.swing_to(target_angle)
 		
-		if config.flyingAttacks == true and self.facing in ["left", "right"]:
+		if global.config.flying_attacks == true and self.facing in ["left", "right"]:
 			var vx = flying_impulse_velocity
 			if self.facing == "left":
 				vx = vx * -1
