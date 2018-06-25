@@ -36,7 +36,7 @@ func _free():
 
 func _ready():	
 	sword.connect('finish_swing', self, '_on_sword_finish_swing')
-	#register_damaging_group('enemies')
+	register_damaging_group('enemies')
 	var width = ProjectSettings.get_setting('display/window/size/width')
 	var height = ProjectSettings.get_setting('display/window/size/height')
 	$ui/DeathLabel.rect_position = (Vector2(width, height) - $ui/DeathLabel.rect_size) / 2
@@ -54,7 +54,7 @@ func _process(delta):
 		sword.rotation = starting_angle
 		sword.swing_to(target_angle)
 		
-		if config.flyingAttacks == true and linear_velocity.length() > flying_attack_min_velocity:
+		if global.config.flying_attacks == true and linear_velocity.length() > flying_attack_min_velocity:
 			attack_number += 1
 			attack_number = attack_number % num_attacks_to_fly
 			if attack_number == 0:

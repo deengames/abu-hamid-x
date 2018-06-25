@@ -38,7 +38,7 @@ func _new_wave():
 				break
 
 
-func _on_spawned_entity_death():
+func _on_spawned_entity_death(entity):
 	num_spawned_entities -= 1
 
 
