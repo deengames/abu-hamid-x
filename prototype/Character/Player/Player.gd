@@ -137,7 +137,10 @@ func _integrate_forces(state):
 
 func _unhandled_key_input(event):
 	if is_dead:
-		get_tree().change_scene('res://prototype/Main.tscn')
+		if event.scancode == KEY_ESCAPE:
+			get_tree().change_scene('res://prototype/MainMenu.tscn')
+		else:
+			get_tree().change_scene('res://prototype/Main.tscn')
 
 
 func _on_health_regen():
