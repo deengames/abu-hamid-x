@@ -46,3 +46,7 @@ func _process(delta):
 	if num_spawned_entities <= 0 and timer.is_stopped():
 		timer.start()
 	$ui/WaveLabel.text = "WAVE: " + str(wave_num) + ' / ' + str(waves_per_game)
+
+
+func _on_Player_shoot_bullet(bullet):
+	add_child(bullet)

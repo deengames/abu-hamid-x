@@ -16,6 +16,7 @@ export (float) var flying_attack_min_velocity = 600
 
 signal fuel_change(new_fuel, max_fuel)
 signal health_change(new_hp, max_hp)
+signal shoot_bullet(bullet)
 
 
 var is_using_jetpack = false
@@ -25,6 +26,7 @@ var is_dead = false
 var attack_number = 0 # for flying attacks
 var facing = "none"
 
+var bullet_cls = preload('res://prototype/Bullet/Bullet.tscn')
 onready var sword = preload('res://prototype/Sword.tscn').instance()
 
 
@@ -47,6 +49,12 @@ func _ready():
 
 
 func _process(delta):
+	if global.config.enable_gun == true and Input.is_action_just_pressed('shoot'):
+		var angle = global_position.angle_to_point(get_global_mouse_position())
+		var bullet = bullet_cls.instance()
+		bullet.init(position.x, position.y, angle)
+		emit_signal("shoot_bullet", bullet)
+	
 	if global.config.enable_sword == true and Input.is_action_just_pressed('attack'):
 		add_child(sword)
 		var starting_angle = get_angle_to(get_global_mouse_position())
