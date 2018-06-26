@@ -71,6 +71,8 @@ rotation = 1.5708
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 520, 240 )
+num_attacks_to_fly = 3
+flying_impulse_velocity = 4500
 flying_attack_min_velocity = 600
 
 [node name="WaveSpawnTimer" type="Timer" parent="." index="2"]
