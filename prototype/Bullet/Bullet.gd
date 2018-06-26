@@ -18,6 +18,8 @@ func collide(info):
 	# once it registers damage
 	if not info.collider.is_in_group('enemies'):
 		queue_free()
+	if info.collider.is_in_group('giants'):
+		queue_free()
 
 
 func init(x, y, angle):

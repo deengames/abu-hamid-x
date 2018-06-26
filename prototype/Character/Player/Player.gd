@@ -40,6 +40,11 @@ onready var reload_timer = $ReloadTimer  # cache for faster use
 onready var sword = preload('res://prototype/Sword.tscn').instance()
 
 
+func pickup_bullets(bullets_to_pickup):
+	bullets_outside_clip += bullets_to_pickup
+	
+
+
 func _reload_gun():
 	reloading = true
 	reload_timer.start()
@@ -57,8 +62,6 @@ func _on_finish_reload():
 	bullets_in_clip += bullets_to_reload
 	bullets_outside_clip -= bullets_to_reload
 	reloading = false
-	
-	emit_signal("num_bullet_change", bullets_in_clip, bullets_outside_clip)
 
 
 func _free():
@@ -78,14 +81,12 @@ func _ready():
 	else:
 		$HealthRegenTimer.wait_time = 1/health_regen_per_second
 	reload_timer.wait_time = seconds_to_reload
-	emit_signal("num_bullet_change", bullets_in_clip, bullets_outside_clip)
 
 
 func _process(delta):
 	if global.config.enable_gun == true and Input.is_action_just_pressed('shoot') and not reloading:
 		if bullets_in_clip > 0:
 			bullets_in_clip -= 1
-			emit_signal("num_bullet_change", bullets_in_clip, bullets_outside_clip)
 			var angle = global_position.angle_to_point(get_global_mouse_position())
 			var bullet = bullet_cls.instance()
 			bullet.init(position.x, position.y, angle)
@@ -111,6 +112,8 @@ func _process(delta):
 					Vector2(0, 0), 
 					Vector2(flying_impulse_velocity, 0).rotated(linear_velocity.angle())
 				)
+	
+	emit_signal("num_bullet_change", bullets_in_clip, bullets_outside_clip)
 
 
 func _on_sword_finish_swing():

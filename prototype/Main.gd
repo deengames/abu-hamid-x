@@ -27,6 +27,7 @@ func _new_wave():
 			var e = random_enemy.instance()
 			add_child(e)
 			e.connect('death', self, '_on_spawned_entity_death')
+			e.connect('spawn_bullet_pickup', self, '_on_spawn_bullet_pickup')
 			num_spawned_entities += 1
 		else:  # exit if there isn't at least one affordable entity
 			var lowest_price = INF
@@ -50,3 +51,6 @@ func _process(delta):
 
 func _on_Player_shoot_bullet(bullet):
 	add_child(bullet)
+
+func _on_spawn_bullet_pickup(bullet_pickup):
+	add_child(bullet_pickup)
