@@ -14,10 +14,14 @@ export (int) var num_attacks_to_fly = 3
 export (float) var flying_impulse_velocity = 4500
 export (float) var flying_attack_min_velocity = 600
 
+export (int) var clip_size = 6
+export (float) var seconds_to_reload = 1.5
+export (int) var starting_bullets = 30
+
 signal fuel_change(new_fuel, max_fuel)
 signal health_change(new_hp, max_hp)
 signal shoot_bullet(bullet)
-
+signal num_bullet_change(new_clip, new_outside)
 
 var is_using_jetpack = false
 var fuel = max_jetpack_fuel
@@ -27,7 +31,34 @@ var attack_number = 0 # for flying attacks
 var facing = "none"
 
 var bullet_cls = preload('res://prototype/Bullet/Bullet.tscn')
+var bullets_outside_clip = starting_bullets - clip_size
+var bullets_in_clip = clip_size
+var reloading = false
+
+onready var reload_timer = $ReloadTimer  # cache for faster use
+
 onready var sword = preload('res://prototype/Sword.tscn').instance()
+
+
+func _reload_gun():
+	reloading = true
+	reload_timer.start()
+
+
+func _on_finish_reload():
+	var bullets_to_fill_clip = clip_size - bullets_in_clip
+	var bullets_to_reload
+	
+	if bullets_to_fill_clip > bullets_outside_clip:
+		bullets_to_reload = bullets_outside_clip
+	else:
+		bullets_to_reload = bullets_to_fill_clip
+	
+	bullets_in_clip += bullets_to_reload
+	bullets_outside_clip -= bullets_to_reload
+	reloading = false
+	
+	emit_signal("num_bullet_change", bullets_in_clip, bullets_outside_clip)
 
 
 func _free():
@@ -46,14 +77,24 @@ func _ready():
 		$HealthRegenTimer.autostart = false
 	else:
 		$HealthRegenTimer.wait_time = 1/health_regen_per_second
+	reload_timer.wait_time = seconds_to_reload
+	emit_signal("num_bullet_change", bullets_in_clip, bullets_outside_clip)
 
 
 func _process(delta):
-	if global.config.enable_gun == true and Input.is_action_just_pressed('shoot'):
-		var angle = global_position.angle_to_point(get_global_mouse_position())
-		var bullet = bullet_cls.instance()
-		bullet.init(position.x, position.y, angle)
-		emit_signal("shoot_bullet", bullet)
+	if global.config.enable_gun == true and Input.is_action_just_pressed('shoot') and not reloading:
+		if bullets_in_clip > 0:
+			bullets_in_clip -= 1
+			emit_signal("num_bullet_change", bullets_in_clip, bullets_outside_clip)
+			var angle = global_position.angle_to_point(get_global_mouse_position())
+			var bullet = bullet_cls.instance()
+			bullet.init(position.x, position.y, angle)
+			emit_signal("shoot_bullet", bullet)
+			if bullets_in_clip == 0:
+				_reload_gun()
+		
+	if global.config.enable_gun == true and Input.is_action_just_pressed('reload') and not reloading:
+		_reload_gun()
 	
 	if global.config.enable_sword == true and Input.is_action_just_pressed('attack'):
 		add_child(sword)
