@@ -14,10 +14,12 @@ Slow down and you'll float gently down while drastically reducing your fuel usag
 
 What's the point of speed, you ask? You deal more damage with your sword the faster you go. There are also flying attacks which propel you in the direction you're heading ridiculously fast, provided you're swinging like crazy and crossed the speed threshold.
 
+Right click and you'll shoot a bullet. You have a limited amount of bullets, but enemies drop ammo. Your gun automatically reloads once it's empty, and you can also press R to reload manually.
+
 That's about it for you.""",
 	"""As for your enemies, there are a few so far:
 
-- Dumbo follower enemies, which were lazily coded to statically follow the player wherever he is found on the map. They bite.
+- Dumbo follower enemies, which follow the player wherever he is found on the map. They bite.
 They're the red half-player-sized squares.
 
 - Giants. They're the huge monsters of pushing-the-player-outside-the-box. As you probably already noticed, you can't hurt them except by attacking their hitspots, which are the little white dots on themselves. They also bite.
