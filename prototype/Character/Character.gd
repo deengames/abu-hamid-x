@@ -12,8 +12,8 @@ onready var health = max_health
 
 onready var damaging_groups = []
 
-var damaging_bodies_in_contact = []
-var time_since_last_damage = 10
+# body: seconds_since_last_damage
+var damaging_bodies_in_contact = {}
 
 func register_damaging_group(group_name):
 	damaging_groups.append(group_name)
@@ -41,9 +41,9 @@ func _damage(dmg_points):
 
 func _process(delta):
 	for body in damaging_bodies_in_contact:
-		time_since_last_damage += delta
-		if time_since_last_damage > 1:
-			time_since_last_damage = 0
+		damaging_bodies_in_contact[body] += delta
+		if damaging_bodies_in_contact[body] > 1:
+			damaging_bodies_in_contact[body] = 0
 			_damage(body.damage_to_deal)
 
 
@@ -53,7 +53,7 @@ func _on_body_entered(body):
 			if damage_per_second_per_contact:
 				# enemies don't need this, hence the if/else
 				body.connect('death', self, '_on_damaging_body_death')
-				damaging_bodies_in_contact.append(body)
+				damaging_bodies_in_contact[body] = 9999
 			else:
 				_damage(body.damage_to_deal)
 			if body.has_method('_on_deal_damage'):
