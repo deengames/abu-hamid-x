@@ -8,8 +8,9 @@
 custom_solver_bias = 0.0
 extents = Vector2( 15.0706, 25 )
 
-[node name="Giant" type="RigidBody2D" index="0" groups=[
+[node name="Giant" type="RigidBody2D" groups=[
 "enemies",
+"giants",
 ]]
 
 input_pickable = false
@@ -33,8 +34,11 @@ angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 max_health = 30
+damage_per_second_per_contact = false
 damage_to_deal = 1
 movement_speed = 20
+min_bullet_pickups = 1
+max_bullet_pickups = 3
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
 
@@ -90,6 +94,8 @@ _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Material", "Pause"
 [node name="HitSpot" parent="." index="3" instance=ExtResource( 2 )]
 
 position = Vector2( 158.938, -15.2418 )
+
+[connection signal="death" from="." to="." method="_on_Giant_death"]
 
 [connection signal="body_entered" from="HitSpot" to="." method="_on_HitSpot_body_entered"]
 

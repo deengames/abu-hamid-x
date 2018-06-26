@@ -1,15 +1,19 @@
 extends RigidBody2D
 
 export (int) var max_health = 10
+export (bool) var damage_per_second_per_contact = false
 
-signal death
-signal damaged
+signal death(entity)
+signal damaged(entity)
 
 # all variables depending on exported stuff need to be marked with
 # onready; if it's overridden, it'll keep the superclass's value
 onready var health = max_health
 
 onready var damaging_groups = []
+
+var damaging_bodies_in_contact = []
+var time_since_last_damage = 10
 
 func register_damaging_group(group_name):
 	damaging_groups.append(group_name)
@@ -24,18 +28,40 @@ func _free():
 	queue_free()
 
 func _death():
-	emit_signal('death')
+	emit_signal('death', self)
 	_free()
 
 
 func _damage(dmg_points):
 	health -= dmg_points
-	emit_signal('damaged')
+	emit_signal('damaged', self)
 	if health <= 0:
 		_death()
+
+
+func _process(delta):
+	for body in damaging_bodies_in_contact:
+		time_since_last_damage += delta
+		if time_since_last_damage > 1:
+			time_since_last_damage = 0
+			_damage(body.damage_to_deal)
 
 
 func _on_body_entered(body):
 	for group_name in damaging_groups:
 		if body.is_in_group(group_name):
-			_damage(body.damage_to_deal)
+			if damage_per_second_per_contact:
+				# enemies don't need this, hence the if/else
+				body.connect('death', self, '_on_damaging_body_death')
+				damaging_bodies_in_contact.append(body)
+			else:
+				_damage(body.damage_to_deal)
+			if body.has_method('_on_deal_damage'):
+				body._on_deal_damage(self)
+
+func _on_damaging_body_death(body):
+	damaging_bodies_in_contact.erase(body)
+
+func _on_body_exited(body):
+	if body in damaging_bodies_in_contact:
+		damaging_bodies_in_contact.erase(body)

@@ -27,6 +27,7 @@ func _new_wave():
 			var e = random_enemy.instance()
 			add_child(e)
 			e.connect('death', self, '_on_spawned_entity_death')
+			e.connect('spawn_bullet_pickup', self, '_on_spawn_bullet_pickup')
 			num_spawned_entities += 1
 		else:  # exit if there isn't at least one affordable entity
 			var lowest_price = INF
@@ -38,7 +39,7 @@ func _new_wave():
 				break
 
 
-func _on_spawned_entity_death():
+func _on_spawned_entity_death(entity):
 	num_spawned_entities -= 1
 
 
@@ -46,3 +47,10 @@ func _process(delta):
 	if num_spawned_entities <= 0 and timer.is_stopped():
 		timer.start()
 	$ui/WaveLabel.text = "WAVE: " + str(wave_num) + ' / ' + str(waves_per_game)
+
+
+func _on_Player_shoot_bullet(bullet):
+	add_child(bullet)
+
+func _on_spawn_bullet_pickup(bullet_pickup):
+	add_child(bullet_pickup)
