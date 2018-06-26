@@ -13,7 +13,11 @@ func _process(delta):
 func collide(info):
 	if info == null:
 		return
-	queue_free()
+	# immediately free in not hitting enemy
+	# otherwise, let it call _on_deal_damage
+	# once it registers damage
+	if not info.collider.is_in_group('enemies'):
+		queue_free()
 
 
 func init(x, y, angle):
@@ -21,3 +25,5 @@ func init(x, y, angle):
 	position.y = y
 	velocity = Vector2(-bullet_speed, 0).rotated(angle)
 	
+func _on_deal_damage(other):
+	queue_free()

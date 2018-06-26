@@ -56,6 +56,8 @@ func _on_body_entered(body):
 				damaging_bodies_in_contact.append(body)
 			else:
 				_damage(body.damage_to_deal)
+			if body.has_method('_on_deal_damage'):
+				body._on_deal_damage(self)
 
 func _on_damaging_body_death(body):
 	damaging_bodies_in_contact.erase(body)
