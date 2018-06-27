@@ -6,9 +6,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 15.0706, 25 )
+extents = Vector2( 180, 270 )
 
-[node name="Giant" type="RigidBody2D" groups=[
+[node name="Giant" type="RigidBody2D" index="0" groups=[
 "enemies",
 "giants",
 ]]
@@ -42,7 +42,6 @@ max_bullet_pickups = 3
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
 
-scale = Vector2( 10, 10 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
