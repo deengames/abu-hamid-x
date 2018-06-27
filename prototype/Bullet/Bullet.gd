@@ -13,13 +13,14 @@ func _process(delta):
 func collide(info):
 	if info == null:
 		return
-	# immediately free in not hitting enemy
-	# otherwise, let it call _on_deal_damage
-	# once it registers damage
-	if not info.collider.is_in_group('enemies'):
-		queue_free()
-	if info.collider.is_in_group('giants'):
-		queue_free()
+	if info.collider.is_in_group('enemies'):
+		# bullets are a pain.
+		# for giants, we have to choose between two:
+			# damaging giants even outside hitspots
+			# not damaging giants even in hitspots
+		# I chose the former and called it a feature >:]
+		info.collider._on_body_entered(self)
+	queue_free()
 
 
 func init(x, y, angle):
