@@ -1,16 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://prototype/Character/Enemy/Giant/Giant.gd" type="Script" id=1]
-[ext_resource path="res://prototype/Character/Enemy/Giant/HitSpot.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 15.0706, 25 )
+extents = Vector2( 180, 270 )
 
 [node name="Giant" type="RigidBody2D" groups=[
-"enemies",
 "giants",
+"enemies",
 ]]
 
 input_pickable = false
@@ -39,10 +38,11 @@ damage_to_deal = 1
 movement_speed = 20
 min_bullet_pickups = 1
 max_bullet_pickups = 3
+min_hitspots = 1
+max_hitspots = 3
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
 
-scale = Vector2( 10, 10 )
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
@@ -53,9 +53,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = -180.0
-margin_top = -272.0
+margin_top = -270.0
 margin_right = 180.0
-margin_bottom = 268.0
+margin_bottom = 270.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -91,12 +91,6 @@ rounded = false
 percent_visible = true
 _sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Material", "Pause", "Rect", "Size Flags", "Theme", "Visibility", "custom_styles" ]
 
-[node name="HitSpot" parent="." index="3" instance=ExtResource( 2 )]
-
-position = Vector2( 158.938, -15.2418 )
-
 [connection signal="death" from="." to="." method="_on_Giant_death"]
-
-[connection signal="body_entered" from="HitSpot" to="." method="_on_HitSpot_body_entered"]
 
 

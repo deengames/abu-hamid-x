@@ -24,15 +24,15 @@ signal shoot_bullet(bullet)
 signal num_bullet_change(new_clip, new_outside)
 
 var is_using_jetpack = false
-var fuel = max_jetpack_fuel
+onready var fuel = max_jetpack_fuel
 var is_dead = false
 
 var attack_number = 0 # for flying attacks
 var facing = "none"
 
 var bullet_cls = preload('res://prototype/Bullet/Bullet.tscn')
-var bullets_outside_clip = starting_bullets - clip_size
-var bullets_in_clip = clip_size
+onready var bullets_outside_clip = starting_bullets - clip_size
+onready var bullets_in_clip = clip_size
 var reloading = false
 
 onready var reload_timer = $ReloadTimer  # cache for faster use
