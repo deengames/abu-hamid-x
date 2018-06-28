@@ -13,6 +13,7 @@ export (float) var health_regen_per_second = 0.5
 export (int) var num_attacks_to_fly = 3
 export (float) var flying_impulse_velocity = 4500
 export (float) var flying_attack_min_velocity = 600
+export (float) var flying_attack_cooldown = 1.5
 
 export (int) var clip_size = 6
 export (float) var seconds_to_reload = 1.5
@@ -27,8 +28,7 @@ var is_using_jetpack = false
 onready var fuel = max_jetpack_fuel
 var is_dead = false
 
-var attack_number = 0 # for flying attacks
-var facing = "none"
+var seconds_since_last_flying_attack = 999
 
 var bullet_cls = preload('res://prototype/Bullet/Bullet.tscn')
 onready var bullets_outside_clip = starting_bullets - clip_size
@@ -84,6 +84,7 @@ func _ready():
 
 
 func _process(delta):
+	seconds_since_last_flying_attack += delta
 	if global.config.enable_gun == true and Input.is_action_just_pressed('shoot') and not reloading:
 		if bullets_in_clip > 0:
 			bullets_in_clip -= 1
@@ -104,10 +105,12 @@ func _process(delta):
 		sword.rotation = starting_angle
 		sword.swing_to(target_angle)
 		
-		if global.config.flying_attacks == true and linear_velocity.length() > flying_attack_min_velocity:
-			attack_number += 1
-			attack_number = attack_number % num_attacks_to_fly
-			if attack_number == 0:
+		if (global.config.flying_attacks == true 
+			and is_using_jetpack 
+			and linear_velocity.length() > flying_attack_min_velocity 
+			and Input.is_action_pressed('boost')
+			and seconds_since_last_flying_attack > flying_attack_cooldown):
+				seconds_since_last_flying_attack = 0
 				self.apply_impulse(
 					Vector2(0, 0), 
 					Vector2(flying_impulse_velocity, 0).rotated(linear_velocity.angle())
@@ -121,11 +124,6 @@ func _on_sword_finish_swing():
 
 
 func _integrate_forces(state):	
-	if Input.is_action_pressed('move_right'):
-		self.facing = "right"
-	elif Input.is_action_pressed('move_left'):
-		self.facing = "left"
-		
 	var velocity = state.get_linear_velocity()
 	
 	if not is_using_jetpack:
