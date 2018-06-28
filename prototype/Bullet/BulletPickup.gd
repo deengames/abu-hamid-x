@@ -2,8 +2,8 @@ extends Node2D
 
 export (int) var magnet_range = 150
 export (float) var magnet_speed = 800
-export (int) var min_bullets_dropped = 3
-export (int) var max_bullets_dropped = 8
+export (int) var min_bullets_dropped = 1
+export (int) var max_bullets_dropped = 5
 
 var player_cls = preload('res://prototype/Character/Player/Player.gd')
 var player
