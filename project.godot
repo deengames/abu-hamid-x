@@ -18,6 +18,10 @@ config/icon="res://icon.png"
 
 global="*res://prototype/global.gd"
 
+[debug]
+
+settings/fps/force_fps=60
+
 [editor_plugins]
 
 enabled=PoolStringArray( "open-external-editor" )
