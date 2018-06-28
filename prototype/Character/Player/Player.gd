@@ -84,6 +84,9 @@ func _ready():
 
 
 func _process(delta):
+	if is_dead:
+		return
+	
 	seconds_since_last_flying_attack += delta
 	if global.config.enable_gun == true and Input.is_action_just_pressed('shoot') and not reloading:
 		if bullets_in_clip > 0:
@@ -123,7 +126,10 @@ func _on_sword_finish_swing():
 	remove_child(sword)
 
 
-func _integrate_forces(state):	
+func _integrate_forces(state):
+	if is_dead:
+		return
+	
 	var velocity = state.get_linear_velocity()
 	
 	if not is_using_jetpack:
@@ -185,14 +191,23 @@ func _integrate_forces(state):
 	emit_signal('fuel_change', fuel, max_jetpack_fuel)
 	emit_signal('health_change', health, max_health)
 
-func _unhandled_key_input(event):
+func _unhandled_input(event):
+	# ignore motion and mousedowns
+	if (event is InputEventMouseMotion 
+		or (event is InputEventMouseButton 
+			and event.pressed
+			)):
+		return
 	if is_dead:
-		if event.scancode == KEY_ESCAPE:
+		if event is InputEventKey and event.scancode == KEY_ESCAPE:
 			get_tree().change_scene('res://prototype/MainMenu.tscn')
 		else:
 			get_tree().change_scene('res://prototype/Main.tscn')
 
 
 func _on_health_regen():
+	if is_dead:
+		return
+	
 	if health < max_health:
 		health += 1
