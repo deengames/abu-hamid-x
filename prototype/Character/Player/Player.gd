@@ -19,6 +19,8 @@ export (int) var clip_size = 6
 export (float) var seconds_to_reload = 1.5
 export (int) var starting_bullets = 30
 
+export (float) var bullets_per_second = 3.0
+
 signal fuel_change(new_fuel, max_fuel)
 signal health_change(new_hp, max_hp)
 signal shoot_bullet(bullet)
@@ -29,6 +31,7 @@ onready var fuel = max_jetpack_fuel
 var is_dead = false
 
 var seconds_since_last_flying_attack = 999
+var seconds_since_last_gunfire = 999
 
 var bullet_cls = preload('res://prototype/Bullet/Bullet.tscn')
 onready var bullets_outside_clip = starting_bullets - clip_size
@@ -88,9 +91,17 @@ func _process(delta):
 		return
 	
 	seconds_since_last_flying_attack += delta
-	if global.config.enable_gun == true and Input.is_action_just_pressed('shoot') and not reloading:
-		if bullets_in_clip > 0:
+	seconds_since_last_gunfire += delta
+
+	if (global.config.enable_gun == true 
+		and Input.is_action_pressed('shoot') 
+		and seconds_since_last_gunfire > 1/bullets_per_second 
+		and not reloading
+		and bullets_in_clip > 0):
+
 			bullets_in_clip -= 1
+			seconds_since_last_gunfire = 0
+
 			var angle = global_position.angle_to_point(get_global_mouse_position())
 			var bullet = bullet_cls.instance()
 			bullet.init(position.x, position.y, angle)
