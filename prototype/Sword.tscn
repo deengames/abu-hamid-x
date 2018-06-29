@@ -2,24 +2,23 @@
 
 [ext_resource path="res://prototype/Sword.gd" type="Script" id=1]
 
-[sub_resource type="RayShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-length = 97.0
+extents = Vector2( 10, 53 )
 
-[node name="Sword" type="KinematicBody2D" groups=[
+[node name="Sword" type="KinematicBody2D" index="0" groups=[
 "sword",
 ]]
 
 show_behind_parent = true
 position = Vector2( 0.323532, 0 )
-rotation = -0.000376087
 input_pickable = false
 collision_layer = 2
 collision_mask = 2
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Visibility", "collision" ]
+_sections_unfolded = [ "Transform", "Visibility", "collision" ]
 damage = 2
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
@@ -43,7 +42,7 @@ _sections_unfolded = [ "Rect" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( 0, 3 )
+position = Vector2( 0, -48 )
 rotation = 3.14159
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
