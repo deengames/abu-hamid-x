@@ -74,6 +74,7 @@ rotation = 4.71239
 
 position = Vector2( 520, 240 )
 flying_attack_cooldown = 1.5
+bullets_per_second = 3.0
 
 [node name="WaveSpawnTimer" type="Timer" parent="." index="2"]
 
