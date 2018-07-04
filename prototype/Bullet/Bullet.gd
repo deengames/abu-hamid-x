@@ -4,7 +4,7 @@ export (float) var bullet_speed = 1500
 export (int) var damage_to_deal = 1
 
 var velocity
-
+var collide_with = "enemies"
 
 func _process(delta):
 	collide(move_and_collide(velocity * delta))
@@ -13,7 +13,7 @@ func _process(delta):
 func collide(info):
 	if info == null:
 		return
-	if info.collider.is_in_group('enemies'):
+	if info.collider.is_in_group(self.collide_with):
 		# bullets are a pain.
 		# for giants, we have to choose between two:
 			# damaging giants even outside hitspots

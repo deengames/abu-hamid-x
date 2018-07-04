@@ -1,7 +1,7 @@
 extends "Enemy.gd"
 
 var last_shot_time = 0
-var bullet_cls = preload('res://prototype/Bullet/Bullet.tscn')
+var bullet_cls = preload('res://prototype/Bullet/EnemyBullet.tscn')
 
 signal shoot_bullet(bullet)
 
@@ -21,8 +21,7 @@ func _process(delta):
 		_fire_at_player()		
 		
 func _fire_at_player():
-	var angle = global_position.angle_to_point(player.position)
-	var vector = Vector2(-bullet_velocity, 0).rotated(position.angle_to_point(player.position))
+	var angle = self.position.angle_to_point(player.position)
 	var bullet = bullet_cls.instance()
 	bullet.init(position.x, position.y, angle)
 	emit_signal("shoot_bullet", bullet)
