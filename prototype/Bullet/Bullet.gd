@@ -1,10 +1,12 @@
 extends KinematicBody2D
 
+### ABSTRACT CLASS. DO NOT INSTANTIATE.
+
 export (float) var bullet_speed = 1500
 export (int) var damage_to_deal = 1
 
 var velocity
-var collider_group = "enemies"
+var collider_group
 
 func _process(delta):
 	collide(move_and_collide(velocity * delta))

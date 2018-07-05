@@ -5,5 +5,4 @@ extends "Bullet.gd"
 # var b = "textvar"
 
 func init(x, y, angle):
-	self.remove_from_group("bullets")
 	.init("player", x, y, angle)
