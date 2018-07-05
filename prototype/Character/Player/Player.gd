@@ -37,6 +37,7 @@ var bullet_cls = preload('res://prototype/Bullet/Bullet.tscn')
 onready var bullets_outside_clip = starting_bullets - clip_size
 onready var bullets_in_clip = clip_size
 var reloading = false
+var bullet_collider_group = "enemies"
 
 onready var reload_timer = $ReloadTimer  # cache for faster use
 
@@ -76,6 +77,7 @@ func _free():
 func _ready():	
 	sword.connect('finish_swing', self, '_on_sword_finish_swing')
 	register_damaging_group('enemies')
+	register_damaging_group('enemybullets')
 	var width = ProjectSettings.get_setting('display/window/size/width')
 	var height = ProjectSettings.get_setting('display/window/size/height')
 	$ui/DeathLabel.rect_position = (Vector2(width, height) - $ui/DeathLabel.rect_size) / 2
@@ -104,7 +106,7 @@ func _process(delta):
 
 			var angle = global_position.angle_to_point(get_global_mouse_position())
 			var bullet = bullet_cls.instance()
-			bullet.init(position.x, position.y, angle)
+			bullet.init(bullet_collider_group, position.x, position.y, angle)
 			emit_signal("shoot_bullet", bullet)
 			if bullets_in_clip == 0:
 				_reload_gun()

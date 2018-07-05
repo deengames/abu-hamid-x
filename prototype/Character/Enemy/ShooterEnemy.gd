@@ -25,4 +25,3 @@ func _fire_at_player():
 	var bullet = bullet_cls.instance()
 	bullet.init(position.x, position.y, angle)
 	emit_signal("shoot_bullet", bullet)
-	_death()
