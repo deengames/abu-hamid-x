@@ -50,14 +50,12 @@ func _process(delta):
 func _on_body_entered(body):
 	for group_name in damaging_groups:
 		if body.is_in_group(group_name):
-			if damage_per_second_per_contact:
+			if body.is_in_group('bullet') or not damage_per_second_per_contact:
+				_damage(body.damage_to_deal)
+			else:
 				# enemies don't need this, hence the if/else
 				body.connect('death', self, '_on_damaging_body_death')
 				damaging_bodies_in_contact[body] = 9999
-			else:
-				_damage(body.damage_to_deal)
-			if body.has_method('_on_deal_damage'):
-				body._on_deal_damage(self)
 
 func _on_damaging_body_death(body):
 	damaging_bodies_in_contact.erase(body)

@@ -19,7 +19,7 @@ func _ready():
 		new_pos = Vector2(rand_range(0, width), rand_range(0, height))
 	position = new_pos
 	register_damaging_group('sword')
-	register_damaging_group('bullet')
+	register_damaging_group('playerbullet')
 
 
 func _process(delta):

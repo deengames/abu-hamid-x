@@ -28,6 +28,3 @@ func init(collider_group, x, y, angle):
 	position.x = x
 	position.y = y
 	velocity = Vector2(-bullet_speed, 0).rotated(angle)
-	
-func _on_deal_damage(other):
-	queue_free()
