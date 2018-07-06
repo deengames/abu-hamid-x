@@ -6,6 +6,7 @@ export (int) var increment_per_wave = 2
 
 var enemies_to_spawn = {
 	preload("res://prototype/Character/Enemy/Enemy.tscn"): 1,
+	preload("res://prototype/Character/Enemy/ShooterEnemy.tscn"): 3,
 	preload("res://prototype/Character/Enemy/Giant/Giant.tscn"): 5
 }
 
@@ -27,6 +28,7 @@ func _new_wave():
 			var e = random_enemy.instance()
 			add_child(e)
 			e.connect('death', self, '_on_spawned_entity_death')
+			e.connect('shoot_bullet', self, '_on_Player_shoot_bullet')
 			e.connect('spawn_bullet_pickup', self, '_on_spawn_bullet_pickup')
 			num_spawned_entities += 1
 		else:  # exit if there isn't at least one affordable entity

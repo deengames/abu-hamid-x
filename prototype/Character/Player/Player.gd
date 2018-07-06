@@ -33,7 +33,7 @@ var is_dead = false
 var seconds_since_last_flying_attack = 999
 var seconds_since_last_gunfire = 999
 
-var bullet_cls = preload('res://prototype/Bullet/Bullet.tscn')
+var bullet_cls = preload('res://prototype/Bullet/PlayerBullet.tscn')
 onready var bullets_outside_clip = starting_bullets - clip_size
 onready var bullets_in_clip = clip_size
 var reloading = false
@@ -76,6 +76,7 @@ func _free():
 func _ready():	
 	sword.connect('finish_swing', self, '_on_sword_finish_swing')
 	register_damaging_group('enemies')
+	register_damaging_group('enemybullet')
 	var width = ProjectSettings.get_setting('display/window/size/width')
 	var height = ProjectSettings.get_setting('display/window/size/height')
 	$ui/DeathLabel.rect_position = (Vector2(width, height) - $ui/DeathLabel.rect_size) / 2
