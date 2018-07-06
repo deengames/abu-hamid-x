@@ -4,7 +4,7 @@
 [ext_resource path="res://prototype/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prototype/Character/Player/Player.tscn" type="PackedScene" id=3]
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 position = Vector2( 460, 680 )
 script = ExtResource( 1 )
@@ -73,8 +73,6 @@ rotation = 4.71239
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 520, 240 )
-flying_attack_cooldown = 1.5
-bullets_per_second = 3.0
 
 [node name="WaveSpawnTimer" type="Timer" parent="." index="2"]
 
