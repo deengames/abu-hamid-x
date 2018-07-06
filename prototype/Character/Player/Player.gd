@@ -156,9 +156,9 @@ func _integrate_forces(state):
 		velocity.x -= gained_velocity
 	if Input.is_action_pressed('move_right') and velocity.x < max_movement_speed:
 		velocity.x += gained_velocity
-	if Input.is_action_just_pressed('toggle_jetpack') and allow_jetpack:
-		is_using_jetpack = not is_using_jetpack
-		gravity_scale = 0 if is_using_jetpack else 2
+	if velocity.y != 0 and Input.is_action_just_pressed('jump') and allow_jetpack and not is_using_jetpack:
+		is_using_jetpack = true
+		gravity_scale = 0
 	
 	if is_using_jetpack:
 		if Input.is_action_pressed('move_up') and velocity.y > -max_movement_speed:
