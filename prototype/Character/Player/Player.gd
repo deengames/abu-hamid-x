@@ -217,6 +217,12 @@ func _unhandled_input(event):
 		else:
 			get_tree().change_scene('res://prototype/Main.tscn')
 
+	
+func _on_body_entered(body):
+	._on_body_entered(body)
+	
+	if self.is_using_jetpack and body.is_in_group("floor"):
+		self._disable_jetpack()
 
 func _on_health_regen():
 	if is_dead:
