@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 180, 270 )
 
-[node name="Giant" type="RigidBody2D" groups=[
+[node name="Giant" type="RigidBody2D" index="0" groups=[
 "enemies",
 "giants",
 ]]
@@ -16,10 +16,10 @@ input_pickable = false
 collision_layer = 4
 collision_mask = 3
 mode = 2
-mass = 100.0
+mass = 1.0
 friction = 0.5
 bounce = 0.0
-gravity_scale = 1.0
+gravity_scale = 3.0
 custom_integrator = false
 continuous_cd = 0
 contacts_reported = 5
