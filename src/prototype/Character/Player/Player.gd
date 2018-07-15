@@ -160,7 +160,9 @@ func _integrate_forces(state):
 	if Input.is_action_just_pressed('toggle_jetpack') and allow_jetpack:
 		is_using_jetpack = not is_using_jetpack
 		gravity_scale = 0 if is_using_jetpack else 2
-	if velocity.y != 0 and Input.is_action_just_pressed('jump') and allow_jetpack and not is_using_jetpack:
+	# Vy is never zero. But often it's like 0.0019 or -0.0002.
+	# > 0.01 means we're for sure in the air.
+	if abs(velocity.y) > 0.01 and Input.is_action_just_pressed('jump') and allow_jetpack and not is_using_jetpack:
 		is_using_jetpack = true
 		gravity_scale = 0
 	
@@ -183,7 +185,7 @@ func _integrate_forces(state):
 	velocity += state.get_total_gravity() * state.step
 	state.set_linear_velocity(velocity)
 	
-	if Input.is_action_just_released('jump'):
+	if Input.is_action_just_pressed('jump') and not is_using_jetpack:
 		self.apply_impulse(Vector2(0, 0), Vector2(0, -1500))
 	
 	if is_using_jetpack and (
