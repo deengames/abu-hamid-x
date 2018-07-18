@@ -17,3 +17,6 @@ func _physics_process(delta):
 		rotation += step
 	else:
 		emit_signal('finish_swing')
+
+func update_damage(velocity):
+	damage_to_deal = damage + velocity.length() / 200

@@ -98,6 +98,7 @@ editor_draw_drag_margin = false
 
 [node name="ui" type="CanvasLayer" parent="." index="4"]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
