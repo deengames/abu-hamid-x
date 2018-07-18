@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://prototype/Character/Player/Gun.gd" type="Script" id=1]
+
+[node name="Gun" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+clip_size = 6
+seconds_to_reload = 1.5
+starting_bullets = 30
+bullets_per_second = 3.0
+
+[node name="ReloadTimer" type="Timer" parent="." index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_finish_reload"]
+
+

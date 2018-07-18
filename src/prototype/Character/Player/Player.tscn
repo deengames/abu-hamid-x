@@ -6,6 +6,7 @@
 [ext_resource path="res://prototype/FuelLabel.gd" type="Script" id=4]
 [ext_resource path="res://prototype/Character/Player/HealthLabel.gd" type="Script" id=5]
 [ext_resource path="res://prototype/Character/Player/AmmoLabel.gd" type="Script" id=6]
+[ext_resource path="res://prototype/Character/Player/Gun.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -29,14 +30,9 @@ max_jetpack_fuel = 500
 jetpack_consumption_rate = 25
 jetpack_recharge_rate = 200
 health_regen_per_second = 0.5
-num_attacks_to_fly = 3
 flying_impulse_velocity = 4500
 flying_attack_min_velocity = 600
 flying_attack_cooldown = 1.5
-clip_size = 18
-seconds_to_reload = 1.0
-starting_bullets = 54
-bullets_per_second = 3.0
 
 [node name="Collision" parent="." index="0"]
 
@@ -111,14 +107,10 @@ transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 [node name="DeathLabel" type="Label" parent="ui" index="0"]
 
 visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 172.0
-margin_top = 124.0
-margin_right = 359.0
-margin_bottom = 155.0
+anchor_left = 0.45
+anchor_top = 0.45
+anchor_right = 0.45
+anchor_bottom = 0.45
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -132,6 +124,7 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "Margin", "Visibility" ]
 
 [node name="FuelLabel" type="Label" parent="ui" index="1"]
 
@@ -207,12 +200,9 @@ wait_time = 1.0
 one_shot = false
 autostart = true
 
-[node name="ReloadTimer" type="Timer" parent="." index="6"]
+[node name="Gun" parent="." index="5" instance=ExtResource( 6 )]
 
-process_mode = 1
-wait_time = 1.0
-one_shot = true
-autostart = false
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="fuel_change" from="." to="ui/FuelLabel" method="_on_Player_fuel_change"]
 
@@ -224,6 +214,8 @@ autostart = false
 
 [connection signal="timeout" from="HealthRegenTimer" to="." method="_on_health_regen"]
 
-[connection signal="timeout" from="ReloadTimer" to="." method="_on_finish_reload"]
+[connection signal="num_bullet_change" from="Gun" to="." method="_on_Gun_num_bullet_change"]
+
+[connection signal="shoot_bullet" from="Gun" to="." method="_on_Gun_shoot_bullet"]
 
 

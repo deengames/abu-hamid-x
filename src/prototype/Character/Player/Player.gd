@@ -10,16 +10,9 @@ export (int) var jetpack_consumption_rate = 25
 export (int) var jetpack_recharge_rate = 200
 
 export (float) var health_regen_per_second = 0.5
-export (int) var num_attacks_to_fly = 3
 export (float) var flying_impulse_velocity = 4500
 export (float) var flying_attack_min_velocity = 600
 export (float) var flying_attack_cooldown = 1.5
-
-export (int) var clip_size = 6
-export (float) var seconds_to_reload = 1.5
-export (int) var starting_bullets = 30
-
-export (float) var bullets_per_second = 3.0
 
 signal fuel_change(new_fuel, max_fuel)
 signal health_change(new_hp, max_hp)
@@ -31,87 +24,35 @@ onready var fuel = max_jetpack_fuel
 var is_dead = false
 
 var seconds_since_last_flying_attack = 999
-var seconds_since_last_gunfire = 999
-
-var bullet_cls = preload('res://prototype/Bullet/PlayerBullet.tscn')
-onready var bullets_outside_clip = starting_bullets - clip_size
-onready var bullets_in_clip = clip_size
-var reloading = false
-
-onready var reload_timer = $ReloadTimer  # cache for faster use
 
 onready var sword = preload('res://prototype/Sword.tscn').instance()
-
+onready var gun = $Gun
 
 func pickup_bullets(bullets_to_pickup):
-	bullets_outside_clip += bullets_to_pickup
+	gun.pickup_bullets(bullets_to_pickup)
 	
-
-
-func _reload_gun():
-	reloading = true
-	reload_timer.start()
-
-
-func _on_finish_reload():
-	var bullets_to_fill_clip = clip_size - bullets_in_clip
-	var bullets_to_reload
-	
-	if bullets_to_fill_clip > bullets_outside_clip:
-		bullets_to_reload = bullets_outside_clip
-	else:
-		bullets_to_reload = bullets_to_fill_clip
-	
-	bullets_in_clip += bullets_to_reload
-	bullets_outside_clip -= bullets_to_reload
-	reloading = false
-
-
 func _free():
 	$ui/DeathLabel.visible = true
 	visible = false
 	is_dead = true
 
-
 func _ready():	
 	sword.connect('finish_swing', self, '_on_sword_finish_swing')
+
 	register_damaging_group('enemies')
 	register_damaging_group('enemybullet')
-	var width = ProjectSettings.get_setting('display/window/size/width')
-	var height = ProjectSettings.get_setting('display/window/size/height')
-	$ui/DeathLabel.rect_position = (Vector2(width, height) - $ui/DeathLabel.rect_size) / 2
+
 	if health_regen_per_second == 0:
 		$HealthRegenTimer.autostart = false
 	else:
 		$HealthRegenTimer.wait_time = 1/health_regen_per_second
-	reload_timer.wait_time = seconds_to_reload
 
 
 func _process(delta):
 	if is_dead:
 		return
-	
+
 	seconds_since_last_flying_attack += delta
-	seconds_since_last_gunfire += delta
-
-	if (global.config.enable_gun == true 
-		and Input.is_action_pressed('shoot') 
-		and seconds_since_last_gunfire > 1/bullets_per_second 
-		and not reloading
-		and bullets_in_clip > 0):
-
-			bullets_in_clip -= 1
-			seconds_since_last_gunfire = 0
-
-			var angle = global_position.angle_to_point(get_global_mouse_position())
-			var bullet = bullet_cls.instance()
-			bullet.init(position.x, position.y, angle)
-			emit_signal("shoot_bullet", bullet)
-			if bullets_in_clip == 0:
-				_reload_gun()
-		
-	if global.config.enable_gun == true and Input.is_action_just_pressed('reload') and not reloading:
-		_reload_gun()
 	
 	if global.config.enable_sword == true and Input.is_action_just_pressed('attack'):
 		add_child(sword)
@@ -130,8 +71,6 @@ func _process(delta):
 					Vector2(0, 0), 
 					Vector2(flying_impulse_velocity, 0).rotated(linear_velocity.angle())
 				)
-	
-	emit_signal("num_bullet_change", bullets_in_clip, bullets_outside_clip)
 
 
 func _on_sword_finish_swing():
@@ -237,3 +176,9 @@ func _on_health_regen():
 func _disable_jetpack():
 	self.is_using_jetpack = false
 	self.gravity_scale = 2
+
+func _on_Gun_shoot_bullet(bullet):
+	emit_signal('shoot_bullet', bullet)
+
+func _on_Gun_num_bullet_change(new_clip, new_outside):
+	emit_signal("num_bullet_change", new_clip, new_outside)

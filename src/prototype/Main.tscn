@@ -4,7 +4,7 @@
 [ext_resource path="res://prototype/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prototype/Character/Player/Player.tscn" type="PackedScene" id=3]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" index="0"]
 
 position = Vector2( 460, 680 )
 script = ExtResource( 1 )
@@ -14,6 +14,7 @@ increment_per_wave = 2
 
 [node name="Walls" type="Node2D" parent="." index="0"]
 
+editor/display_folded = true
 rotation = 1.5708
 _sections_unfolded = [ "Transform" ]
 
