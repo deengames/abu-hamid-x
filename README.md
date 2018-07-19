@@ -1,3 +1,3 @@
 # Abu Hamid X
 
-A prototype in Godot.
+Sci-fi jetpack/samurai action game. Currently prototyping in Godot.
