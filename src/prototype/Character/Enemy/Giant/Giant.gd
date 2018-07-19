@@ -14,7 +14,6 @@ onready var colorrect = $ColorBox
 
 
 func _ready():
-	randomize()
 	var num_hitspots = (randi() % max_hitspots) + min_hitspots
 	for i in num_hitspots:
 		var hitspot = hitspot_cls.instance()

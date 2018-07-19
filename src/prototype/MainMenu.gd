@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-
 func _on_NewGameButton_pressed():
+	randomize()
 	get_tree().change_scene('res://prototype/Main.tscn')
 
 
