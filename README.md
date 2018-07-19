@@ -1,5 +1,5 @@
 # Abu Hamid X
 
-The best game *ever*. With dinars, miswak, and lots and lots of bananas.
+Sci-fi jetpack/samurai action game.
 
-This is currently a prototype in Godot.
+Currently prototyping in Godot.
