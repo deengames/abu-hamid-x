@@ -19,7 +19,7 @@ func _ready():
 	for i in num_hitspots:
 		var hitspot = hitspot_cls.instance()
 		place_hitspot_on_border(hitspot)
-		hitspot.connect('body_entered', self, '_on_HitSpot_body_entered')
+		hitspot.connect('body_entered', self, '_on_hitspot_body_entered')
 		add_child(hitspot)
 
 
@@ -38,8 +38,14 @@ func place_hitspot_on_border(hitspot):
 	hitspot.position = Vector2(x, y)
 
 
-func _on_HitSpot_body_entered(body):
-	_on_body_entered(body)
+func _on_body_entered(body):
+	# this has to be overridden to fool 
+	# character's connection to this signal
+	pass
+
+
+func _on_hitspot_body_entered(body):
+	._on_body_entered(body)
 
 
 func _on_Giant_death(entity):
