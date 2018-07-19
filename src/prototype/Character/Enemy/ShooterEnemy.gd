@@ -6,13 +6,11 @@ var bullet_cls = preload('res://prototype/Bullet/EnemyBullet.tscn')
 signal shoot_bullet(bullet)
 
 # constants
-var seconds_between_shots = 1
-var bullet_velocity = 100 # pixels per second
+export (int) var base_seconds_between_shots = 1
+export (float) var seconds_between_shots_fluctation = 0.5
+export (int) var bullet_velocity = 100 # pixels per second
 
-func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
-	pass
+onready var seconds_between_shots = base_seconds_between_shots + rand_range(-seconds_between_shots_fluctation, seconds_between_shots_fluctation)
 
 func _process(delta):
 	last_shot_time = last_shot_time + delta
