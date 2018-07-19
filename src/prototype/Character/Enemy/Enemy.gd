@@ -5,7 +5,7 @@ signal spawn_bullet_pickup(bullet_pickup)
 
 
 export (int) var damage_to_deal = 1
-export (float) var movement_speed = 20
+export (float) var movement_speed = 10
 
 var bullet_pickup_cls = preload('res://prototype/Bullet/BulletPickup.tscn')
 onready var player = get_tree().get_root().get_node("Main").get_node('Player')
