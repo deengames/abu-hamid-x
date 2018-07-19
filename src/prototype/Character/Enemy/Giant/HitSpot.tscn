@@ -3,7 +3,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 15, 15 )
+extents = Vector2( 20, 15 )
 
 [node name="HitSpot" type="Area2D" index="0"]
 
