@@ -19,6 +19,7 @@ func _ready():
 		var hitspot = hitspot_cls.instance()
 		place_hitspot_on_border(hitspot)
 		hitspot.connect('damaged', self, 'damage_with')
+		hitspot.connect('impulse', self, 'apply_impulse')
 		add_child(hitspot)
 
 

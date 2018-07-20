@@ -14,6 +14,7 @@ func swing_towards(angle_to_mouse):
 
 func process_overlapper(overlapper):
 	if overlapper.is_in_group('sword_damageable') and !overlapper in entities_damaged:
+		overlapper.apply_impulse(Vector2(0, 0), Vector2(20000, 0).rotated(rotation))
 		overlapper.damage_with(self, damage_to_deal)
 		entities_damaged.append(overlapper)
 
