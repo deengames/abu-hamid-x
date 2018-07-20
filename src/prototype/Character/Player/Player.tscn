@@ -16,7 +16,7 @@ custom_solver_bias = 0.0
 extents = Vector2( 15, 25 )
 
 [node name="Player" index="0" groups=[
-"player",
+"enemy_damageable",
 ] instance=ExtResource( 1 )]
 
 collision_layer = 2
@@ -24,7 +24,6 @@ collision_mask = 1
 mass = 4.0
 script = ExtResource( 2 )
 max_health = 11
-damage_per_second_per_contact = true
 max_movement_speed = 800
 acceleration = 2000
 health_regen_per_second = 0.5

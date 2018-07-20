@@ -32,9 +32,6 @@ func _free():
 func _ready():
 	jetpack.set_floor_raycast($FloorRaycast)
 
-	register_damaging_group('enemies')
-	register_damaging_group('enemybullet')
-
 	if health_regen_per_second == 0:
 		$HealthRegenTimer.autostart = false
 	else:
@@ -89,8 +86,6 @@ func _unhandled_input(event):
 
 	
 func _on_body_entered(body):
-	._on_body_entered(body)
-	
 	if jetpack.is_using_jetpack and body.is_in_group("floor"):
 		jetpack._disable_jetpack()
 

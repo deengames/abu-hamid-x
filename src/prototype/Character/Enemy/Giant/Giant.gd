@@ -1,4 +1,4 @@
-extends "../Enemy.gd"
+extends "../BaseEnemy.gd"
 
 export (int) var min_bullet_pickups = 1
 export (int) var max_bullet_pickups = 3
@@ -18,7 +18,7 @@ func _ready():
 	for i in num_hitspots:
 		var hitspot = hitspot_cls.instance()
 		place_hitspot_on_border(hitspot)
-		hitspot.connect('body_entered', self, '_on_hitspot_body_entered')
+		hitspot.connect('damaged', self, 'damage_with')
 		add_child(hitspot)
 
 
@@ -37,16 +37,6 @@ func place_hitspot_on_border(hitspot):
 	hitspot.position = Vector2(x, y)
 
 
-func _on_body_entered(body):
-	# this has to be overridden to fool 
-	# character's connection to this signal
-	pass
-
-
-func _on_hitspot_body_entered(body):
-	._on_body_entered(body)
-
-
 func _on_Giant_death(entity):
 	for i in range(bullet_pickups):
-		_on_Enemy_death(entity)
+		spawn_bullet_pickups()

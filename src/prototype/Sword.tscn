@@ -32,29 +32,10 @@ tracks/1/keys = {
 "update": 1,
 "values": [ PoolVector2Array( -8.86708, -99.5327, -8.86708, 6.35307, 10.6811, 6.35307, 9.86656, -99.5327 ), PoolVector2Array( 46.9039, -102.18, -8.86708, 6.35307, 84.7189, 64.3387, 107.939, -3.99356, 104.622, -69.0088 ), PoolVector2Array( -12.0345, 110.515, -10.5643, -0.483643, 84.7189, 64.3387, 54.8588, 98.0186 ) ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "process_slash_frame"
-}, {
-"args": [  ],
-"method": ""
-}, {
-"args": [  ],
-"method": ""
-} ]
-}
 
 [node name="Sword" type="Area2D" index="0"]
 
+visible = false
 show_behind_parent = true
 position = Vector2( 0.323532, 0 )
 input_pickable = true
@@ -62,6 +43,8 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+monitoring = false
+monitorable = false
 collision_layer = 0
 collision_mask = 4
 audio_bus_override = false
@@ -104,6 +87,10 @@ blend_times = [  ]
 
 build_mode = 0
 polygon = PoolVector2Array( -8.86708, -99.5327, -8.86708, 6.35307, 10.6811, 6.35307, 9.86656, -99.5327 )
+
+[connection signal="area_entered" from="." to="." method="process_overlapper"]
+
+[connection signal="body_entered" from="." to="." method="process_overlapper"]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 
