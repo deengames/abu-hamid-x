@@ -8,14 +8,19 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 6.89625
 
-[node name="Bullet" type="KinematicBody2D" index="0" groups=[
+[node name="Bullet" type="Area2D" index="0" groups=[
 "bullet",
 ]]
 
-input_pickable = false
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
 collision_layer = 0
 collision_mask = 0
-collision/safe_margin = 0.08
+audio_bus_override = false
+audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Material", "Pause", "Pickable", "Transform", "Visibility", "Z Index", "collision" ]
 bullet_speed = 1500
@@ -42,5 +47,9 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
+
+[connection signal="area_entered" from="." to="." method="collide"]
+
+[connection signal="body_entered" from="." to="." method="collide"]
 
 
