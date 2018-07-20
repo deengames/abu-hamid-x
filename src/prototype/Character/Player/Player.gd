@@ -17,7 +17,7 @@ var is_dead = false
 var seconds_since_last_flying_attack = 999
 
 onready var movement_component = preload('res://prototype/Character/Player/Movement.gd').new(self)
-onready var sword = preload('res://prototype/Sword.tscn').instance()
+onready var sword = $Sword
 onready var jetpack = $Jetpack
 onready var gun = $Gun
 
@@ -30,7 +30,6 @@ func _free():
 	is_dead = true
 
 func _ready():
-	sword.connect('finish_swing', self, '_on_sword_finish_swing')
 	jetpack.set_floor_raycast($FloorRaycast)
 
 	register_damaging_group('enemies')
@@ -49,11 +48,8 @@ func _process(delta):
 	seconds_since_last_flying_attack += delta
 	
 	if global.config.enable_sword == true and Input.is_action_just_pressed('attack'):
-		add_child(sword)
-		var starting_angle = get_angle_to(get_global_mouse_position())
-		var target_angle = starting_angle + PI
-		sword.rotation = starting_angle
-		sword.swing_to(target_angle)
+		var angle_to_mouse = get_angle_to(get_global_mouse_position()) + PI/2
+		sword.swing_towards(angle_to_mouse)
 		
 		if (global.config.flying_attacks == true 
 			and jetpack.is_using_jetpack 
@@ -65,10 +61,6 @@ func _process(delta):
 					Vector2(0, 0), 
 					Vector2(flying_impulse_velocity, 0).rotated(linear_velocity.angle())
 				)
-
-
-func _on_sword_finish_swing():
-	remove_child(sword)
 
 
 func _integrate_forces(state):

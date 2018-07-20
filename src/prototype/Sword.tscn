@@ -2,23 +2,72 @@
 
 [ext_resource path="res://prototype/Sword.gd" type="Script" id=1]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="Animation" id=1]
 
-custom_solver_bias = 0.0
-extents = Vector2( 10, 53 )
+resource_name = "slash"
+length = 0.2
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 120.0, 180.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CollisionPolygon2D:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ PoolVector2Array( -8.86708, -99.5327, -8.86708, 6.35307, 10.6811, 6.35307, 9.86656, -99.5327 ), PoolVector2Array( 46.9039, -102.18, -8.86708, 6.35307, 84.7189, 64.3387, 107.939, -3.99356, 104.622, -69.0088 ), PoolVector2Array( -12.0345, 110.515, -10.5643, -0.483643, 84.7189, 64.3387, 54.8588, 98.0186 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "process_slash_frame"
+}, {
+"args": [  ],
+"method": ""
+}, {
+"args": [  ],
+"method": ""
+} ]
+}
 
-[node name="Sword" type="KinematicBody2D" groups=[
-"sword",
-]]
+[node name="Sword" type="Area2D" index="0"]
 
 show_behind_parent = true
 position = Vector2( 0.323532, 0 )
-input_pickable = false
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
 collision_layer = 0
 collision_mask = 4
-collision/safe_margin = 0.08
+audio_bus_override = false
+audio_bus_name = "Master"
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Transform", "Visibility", "collision" ]
+_sections_unfolded = [ "Collision", "Transform", "collision" ]
 damage = 2
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
@@ -28,9 +77,10 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = -3.0
-margin_top = -97.0
+margin_top = 3.0
 margin_right = 3.0
-margin_bottom = 3.0
+margin_bottom = 103.0
+rect_scale = Vector2( 1, -1 )
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -40,11 +90,23 @@ size_flags_vertical = 1
 color = Color( 1, 1, 1, 1 )
 _sections_unfolded = [ "Rect" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 
-position = Vector2( 0, -48 )
-rotation = 3.14159
-shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
+root_node = NodePath("..")
+autoplay = ""
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/slash = SubResource( 1 )
+blend_times = [  ]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+
+build_mode = 0
+polygon = PoolVector2Array( -8.86708, -99.5327, -8.86708, 6.35307, 10.6811, 6.35307, 9.86656, -99.5327 )
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 
 
