@@ -6,6 +6,7 @@
 [node name="Shotgun" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
+bullets_per_second = 1.0
 bullets_per_shot = 3
 spread_in_radians = 0.523599
 

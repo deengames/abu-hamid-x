@@ -2,7 +2,7 @@ extends Area2D
 
 export (float) var powerups_per_enemy_death = 0.2
 
-var powerup_cls
+var powerup_cls = preload('res://prototype/Powerup/ShotgunPowerup.tscn')
 onready var shape = $CollisionShape2D.shape
 
 func _on_enemy_death(enemy):
