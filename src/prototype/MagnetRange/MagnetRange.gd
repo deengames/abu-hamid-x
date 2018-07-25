@@ -1,5 +1,7 @@
 extends Area2D
 
+export (float) var magnet_speed = 3000
+
 var player_cls = preload('res://prototype/Character/Player/Player.gd')
 var player
 
