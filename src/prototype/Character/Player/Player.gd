@@ -114,3 +114,8 @@ func _on_Gun_shoot_bullet(bullet):
 
 func _on_Gun_num_bullet_change(new_clip, new_outside):
 	emit_signal("num_bullet_change", new_clip, new_outside)
+
+func change_gun(new_gun):
+	gun = new_gun
+	gun.connect('num_bullet_change', self, "_on_Gun_num_bullet_change")
+	gun.connect('shoot_bullet', self, "_on_Gun_shoot_bullet")
