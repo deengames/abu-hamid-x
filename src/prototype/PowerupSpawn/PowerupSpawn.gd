@@ -6,7 +6,7 @@ var powerup_cls = preload('res://prototype/Powerup/ShotgunPowerup.tscn')
 onready var shape = $CollisionShape2D.shape
 
 func _on_enemy_death(enemy):
-	if randf() > powerups_per_enemy_death:
+	if randf() < powerups_per_enemy_death:
 		var x = shape.extents.x
 		var y = shape.extents.y
 		
