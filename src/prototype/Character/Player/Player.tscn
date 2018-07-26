@@ -6,8 +6,9 @@
 [ext_resource path="res://prototype/FuelLabel.gd" type="Script" id=4]
 [ext_resource path="res://prototype/Character/Player/HealthLabel.gd" type="Script" id=5]
 [ext_resource path="res://prototype/Character/Player/AmmoLabel.gd" type="Script" id=6]
-[ext_resource path="res://prototype/Character/Player/Gun.tscn" type="PackedScene" id=7]
+[ext_resource path="res://prototype/Character/Player/Gun/Gun.tscn" type="PackedScene" id=7]
 [ext_resource path="res://prototype/Character/Player/Jetpack.tscn" type="PackedScene" id=8]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 

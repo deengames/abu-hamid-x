@@ -18,6 +18,8 @@ var num_spawned_entities = 0
 var carry_over_points = 0
 onready var timer = $WaveSpawnTimer
 
+onready var powerup_spawn = $PowerupSpawn
+
 
 func _new_wave():
 	spawned_giant = false
@@ -48,6 +50,7 @@ func _add_entity(enemy_cls):
 	var e = enemy_cls.instance()
 	add_child(e)
 	e.connect('death', self, '_on_spawned_entity_death')
+	e.connect('death', powerup_spawn, '_on_enemy_death')
 	e.connect('shoot_bullet', self, '_on_Player_shoot_bullet')
 	e.connect('spawn_bullet_pickup', self, '_on_spawn_bullet_pickup')
 	num_spawned_entities += 1

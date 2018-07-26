@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://prototype/Main.gd" type="Script" id=1]
 [ext_resource path="res://prototype/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prototype/Character/Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://prototype/PowerupSpawn/PowerupSpawn.tscn" type="PackedScene" id=4]
 
 [node name="Main" type="Node2D" index="0"]
 
@@ -112,6 +113,11 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin" ]
+
+[node name="PowerupSpawn" parent="." index="4" instance=ExtResource( 4 )]
+
+position = Vector2( 995.57, 160.726 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="shoot_bullet" from="Player" to="." method="_on_Player_shoot_bullet"]
 

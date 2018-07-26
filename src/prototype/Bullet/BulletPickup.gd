@@ -1,5 +1,7 @@
 extends Node2D
 
+# TODO: Use extracted MagnetRange scene
+
 export (int) var magnet_range = 200
 export (float) var magnet_speed = 3000
 export (int) var min_bullets_dropped = 1

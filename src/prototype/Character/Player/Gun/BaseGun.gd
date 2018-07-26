@@ -4,7 +4,7 @@ export (int) var clip_size = 6
 export (float) var seconds_to_reload = 1.5
 export (int) var starting_bullets = 30
 
-export (float) var bullets_per_second = 3.0
+export (float) var bullets_per_second = 1.0
 
 signal shoot_bullet(bullet)
 signal num_bullet_change(new_clip, new_outside)
@@ -28,14 +28,8 @@ func _process(delta):
 		and seconds_since_last_gunfire > 1/bullets_per_second 
 		and not reloading
 		and bullets_in_clip > 0):
-
-			bullets_in_clip -= 1
-			seconds_since_last_gunfire = 0
-
 			var angle = global_position.angle_to_point(get_global_mouse_position())
-			var bullet = bullet_cls.instance()
-			bullet.init(get_parent().position.x, get_parent().position.y, angle)
-			emit_signal("shoot_bullet", bullet)
+			shoot_towards(angle)
 			if bullets_in_clip == 0:
 				_reload_gun()
 		
