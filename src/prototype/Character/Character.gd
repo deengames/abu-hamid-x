@@ -14,6 +14,7 @@ onready var damaging_groups = []
 
 # body: seconds_since_last_damage
 var damaging_bodies_in_contact = {}
+var is_dead = false
 
 func register_damaging_group(group_name):
 	damaging_groups.append(group_name)
@@ -28,6 +29,7 @@ func _free():
 	queue_free()
 
 func _death():
+	is_dead = true
 	emit_signal('death', self)
 	_free()
 
@@ -40,6 +42,9 @@ func _damage(dmg_points):
 
 
 func _process(delta):
+	if is_dead:
+		return
+
 	for body in damaging_bodies_in_contact:
 		damaging_bodies_in_contact[body] += delta
 		if damaging_bodies_in_contact[body] > 1:
@@ -48,6 +53,9 @@ func _process(delta):
 
 
 func _on_body_entered(body):
+	if is_dead:
+		return
+
 	for group_name in damaging_groups:
 		if body.is_in_group(group_name):
 			if body.is_in_group('bullet') or not damage_per_second_per_contact:

@@ -13,7 +13,6 @@ signal health_change(new_hp, max_hp)
 signal shoot_bullet(bullet)
 signal num_bullet_change(new_clip, new_outside)
 
-var is_dead = false
 var seconds_since_last_flying_attack = 999
 
 onready var movement_component = preload('res://prototype/Character/Player/Movement.gd').new(self)
@@ -27,7 +26,6 @@ func pickup_bullets(bullets_to_pickup):
 func _free():
 	$ui/DeathLabel.visible = true
 	visible = false
-	is_dead = true
 
 func _ready():
 	sword.connect('finish_swing', self, '_on_sword_finish_swing')
