@@ -57,3 +57,6 @@ func _on_finish_reload():
 
 func pickup_bullets(bullets_to_pickup):
 	bullets_outside_clip += bullets_to_pickup
+
+func change_bullet(new_bullet):
+	bullet_cls = new_bullet

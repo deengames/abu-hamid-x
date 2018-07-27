@@ -1,6 +1,6 @@
 extends "Powerup.gd"
 
-var explosive_bullet
+var explosive_bullet = preload('res://prototype/Bullet/ExplosivePlayerBullet.tscn')
 onready var magnetrange = $MagnetRange
 
 func _on_body_entered(body):
