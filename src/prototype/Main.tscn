@@ -1,11 +1,20 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://prototype/Main.gd" type="Script" id=1]
 [ext_resource path="res://prototype/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prototype/Character/Player/Player.tscn" type="PackedScene" id=3]
-[ext_resource path="res://prototype/PowerupSpawn/PowerupSpawn.tscn" type="PackedScene" id=4]
+[ext_resource path="res://prototype/arial.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://prototype/PowerupSpawn/PowerupSpawn.tscn" type="PackedScene" id=5]
 
-[node name="Main" type="Node2D"]
+[sub_resource type="DynamicFont" id=1]
+
+size = 72
+use_mipmaps = false
+use_filter = false
+font_data = ExtResource( 4 )
+_sections_unfolded = [ "Font", "Settings" ]
+
+[node name="Main" type="Node2D" index="0"]
 
 position = Vector2( 460, 680 )
 script = ExtResource( 1 )
@@ -85,7 +94,6 @@ autostart = true
 
 [node name="ui" type="CanvasLayer" parent="." index="3"]
 
-editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -114,7 +122,35 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Margin" ]
 
-[node name="PowerupSpawn" parent="." index="4" instance=ExtResource( 4 )]
+[node name="WinButton" type="Button" parent="ui" index="1"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 218.0
+margin_top = 95.0
+margin_right = 750.0
+margin_bottom = 183.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_fonts/font = SubResource( 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "You Win! (Back)"
+flat = false
+align = 1
+_sections_unfolded = [ "Material", "Visibility", "custom_fonts" ]
+
+[node name="PowerupSpawn" parent="." index="4" instance=ExtResource( 5 )]
 
 position = Vector2( 995.57, 160.726 )
 _sections_unfolded = [ "Transform" ]
@@ -122,5 +158,7 @@ _sections_unfolded = [ "Transform" ]
 [connection signal="shoot_bullet" from="Player" to="." method="_on_Player_shoot_bullet"]
 
 [connection signal="timeout" from="WaveSpawnTimer" to="." method="_new_wave"]
+
+[connection signal="pressed" from="ui/WinButton" to="." method="_on_Button_pressed"]
 
 
