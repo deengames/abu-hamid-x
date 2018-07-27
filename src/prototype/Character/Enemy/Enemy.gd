@@ -20,6 +20,7 @@ func _ready():
 	position = new_pos
 	register_damaging_group('sword')
 	register_damaging_group('playerbullet')
+	register_damaging_group('explosion')
 
 
 func _process(delta):
