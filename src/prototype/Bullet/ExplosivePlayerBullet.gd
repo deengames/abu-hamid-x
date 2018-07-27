@@ -1,7 +1,7 @@
 extends "PlayerBullet.gd"
 
-export (int) var explosion_radius = 30
-export (int) var explosion_damage = 2
+export (int) var explosion_radius = 90
+export (int) var explosion_damage = 1
 
 var explodes = preload('res://prototype/Explosion/Explodes.gd').new(explosion_radius, explosion_damage)
 

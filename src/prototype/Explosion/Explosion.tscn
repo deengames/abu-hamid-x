@@ -7,7 +7,9 @@
 custom_solver_bias = 0.0
 radius = 20.0
 
-[node name="Explosion" type="Area2D" index="0"]
+[node name="Explosion" type="Area2D" index="0" groups=[
+"explosion",
+]]
 
 input_pickable = true
 gravity_point = true
@@ -20,6 +22,7 @@ collision_mask = 14
 audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
@@ -43,5 +46,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 color = Color( 0.976563, 0.457764, 0, 0.501961 )
 _sections_unfolded = [ "Rect" ]
+
+[connection signal="body_entered" from="." to="." method="_on_Explosion_body_entered"]
 
 
