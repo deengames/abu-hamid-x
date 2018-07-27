@@ -9,9 +9,9 @@ size = 72
 use_mipmaps = false
 use_filter = false
 font_data = ExtResource( 2 )
-_sections_unfolded = [ "Settings" ]
+_sections_unfolded = [ "Font", "Settings" ]
 
-[node name="MainMenu" type="CanvasLayer" index="0"]
+[node name="MainMenu" type="CanvasLayer"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -39,7 +39,7 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "custom_fonts" ]
+_sections_unfolded = [ "Anchor", "Theme", "custom_fonts" ]
 
 [node name="NewGameButton" type="Button" parent="." index="1"]
 
