@@ -33,6 +33,7 @@ func _ready():
 
 	register_damaging_group('enemies')
 	register_damaging_group('enemybullet')
+	register_damaging_group('traps')
 
 	if health_regen_per_second == 0:
 		$HealthRegenTimer.autostart = false
