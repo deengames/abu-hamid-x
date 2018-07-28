@@ -4,25 +4,18 @@ export (int) var waves_per_game = 10
 export (int) var points_in_first_wave = 1
 export (int) var increment_per_wave = 2
 
-var enemies_to_spawn = {
-	preload("res://prototype/Character/Enemy/Enemy.tscn"): 1,
-	preload("res://prototype/Character/Enemy/ShooterEnemy.tscn"): 3
-}
-
-var giant_cls = preload("res://prototype/Character/Enemy/Giant/Giant.tscn")
-var giant_cost = 5
-var spawned_giant = false
-
 var wave_num = 0
-var num_spawned_entities = 0
 var carry_over_points = 0
+var num_spawned_entities = 0
 onready var timer = $WaveSpawnTimer
 
 onready var powerup_spawn = $PowerupSpawn
 
 
 func _new_wave():
-	spawned_giant = false
+	var enemies_to_spawn = global.current_spawns
+	var special_spawns = global.special_spawns
+	var x = {}
 	wave_num += 1
 	
 	if wave_num > global.FINAL_WAVE_NUMBER:
@@ -31,10 +24,6 @@ func _new_wave():
 		var points_this_wave = points_in_first_wave + (increment_per_wave * wave_num) + carry_over_points
 		carry_over_points = 0
 		while points_this_wave > 0:
-			if (wave_num % 3 == 0 or wave_num == global.FINAL_WAVE_NUMBER) and points_this_wave > giant_cost and not spawned_giant:
-				points_this_wave -= giant_cost
-				_add_entity(giant_cls)
-				spawned_giant = true
 			var random_enemy = enemies_to_spawn.keys()[randi() % len(enemies_to_spawn)]
 			var price = enemies_to_spawn[random_enemy]
 			if price <= points_this_wave:
@@ -48,6 +37,9 @@ func _new_wave():
 				if points_this_wave < lowest_price:
 					carry_over_points = points_this_wave
 					break
+		if special_spawns.has(wave_num):
+			var special_enemy = special_spawns[wave_num]
+			_add_entity(special_enemy)
 
 
 func _add_entity(enemy_cls):

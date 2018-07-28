@@ -16,4 +16,15 @@ func _ready():
 
 
 func _on_Button_pressed():
-		get_tree().change_scene('res://prototype/Main.tscn')
+	
+	global.current_spawns = {
+		preload("res://prototype/Character/Enemy/Enemy.tscn"): 1,
+		preload("res://prototype/Character/Enemy/ShooterEnemy.tscn"): 3
+	}
+	
+	global.special_spawns = {
+		3: preload("res://prototype/Character/Enemy/Giant/Giant.tscn"),
+		global.FINAL_WAVE_NUMBER: preload("res://prototype/Character/Enemy/Giant/Giant.tscn")
+	}
+	
+	get_tree().change_scene('res://prototype/Main.tscn')
