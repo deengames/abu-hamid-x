@@ -5,7 +5,8 @@ func _on_Button_pressed():
 	
 	global.current_spawns = {
 		preload("res://prototype/Character/Enemy/Enemy.tscn"): 1,
-		preload("res://prototype/Character/Enemy/ShooterEnemy.tscn"): 3
+		preload("res://prototype/Character/Enemy/ShooterEnemy.tscn"): 3,
+		preload("res://prototype/Character/Enemy/Kamikaze/Kamikaze.tscn"): 2
 	}
 	
 	global.special_spawns = {
@@ -19,7 +20,8 @@ func _on_Button_pressed():
 func _on_Button2_pressed():
 	global.current_spawns = {
 		preload("res://prototype/Character/Enemy/Enemy.tscn"): 1,
-		preload("res://prototype/Character/Enemy/ShooterEnemy.tscn"): 3
+		preload("res://prototype/Character/Enemy/ShooterEnemy.tscn"): 3,
+		preload("res://prototype/Character/Enemy/Kamikaze/Kamikaze.tscn"): 2
 	}
 	
 	get_tree().change_scene('res://prototype/Scenario2.tscn')
