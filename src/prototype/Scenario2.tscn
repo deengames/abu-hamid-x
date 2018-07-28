@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://prototype/Main.gd" type="Script" id=1]
 [ext_resource path="res://prototype/Props/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prototype/Character/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prototype/arial.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://prototype/PowerupSpawn/PowerupSpawn.tscn" type="PackedScene" id=5]
-
+[ext_resource path="res://prototype/Props/Lava.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -95,6 +95,7 @@ autostart = true
 
 [node name="ui" type="CanvasLayer" parent="." index="3"]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -155,6 +156,22 @@ _sections_unfolded = [ "Material", "Visibility", "custom_fonts" ]
 
 position = Vector2( 995.57, 160.726 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="Lava" type="Node2D" parent="." index="5"]
+
+position = Vector2( 995.57, 184.185 )
+
+[node name="Lava" parent="Lava" index="0" instance=ExtResource( 6 )]
+
+position = Vector2( 334.063, 521.114 )
+
+[node name="Lava2" parent="Lava" index="1" instance=ExtResource( 6 )]
+
+position = Vector2( 270.55, 521.114 )
+
+[node name="Lava3" parent="Lava" index="2" instance=ExtResource( 6 )]
+
+position = Vector2( 207.036, 521.114 )
 
 [connection signal="shoot_bullet" from="Player" to="." method="_on_Player_shoot_bullet"]
 
