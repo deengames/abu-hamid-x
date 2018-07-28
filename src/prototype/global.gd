@@ -7,3 +7,5 @@ export (Dictionary) var config = {
     "enable_boost": false,
     "enable_float_down": false
 }
+
+export (int) var FINAL_WAVE_NUMBER = 5

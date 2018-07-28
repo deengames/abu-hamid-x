@@ -25,13 +25,13 @@ func _new_wave():
 	spawned_giant = false
 	wave_num += 1
 	
-	if wave_num > 6:
+	if wave_num > global.FINAL_WAVE_NUMBER:
 		$ui/WinButton.visible = true
 	else:
 		var points_this_wave = points_in_first_wave + (increment_per_wave * wave_num) + carry_over_points
 		carry_over_points = 0
 		while points_this_wave > 0:
-			if wave_num % 3 == 0 and points_this_wave > giant_cost and not spawned_giant:
+			if (wave_num % 3 == 0 or wave_num == global.FINAL_WAVE_NUMBER) and points_this_wave > giant_cost and not spawned_giant:
 				points_this_wave -= giant_cost
 				_add_entity(giant_cls)
 				spawned_giant = true
