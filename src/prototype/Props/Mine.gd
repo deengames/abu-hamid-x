@@ -1,7 +1,7 @@
 extends Area2D
 
 var explodes
-export (int) var damage = 1
+export (int) var damage = 3
 
 
 func _ready():

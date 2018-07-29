@@ -17,4 +17,5 @@ func _process(delta):
 		queue_free()
 
 func _on_Explosion_body_entered(body):
-	body._on_body_entered(self)
+	if body.has_method('_damage'):
+		body._damage(damage_to_deal)
