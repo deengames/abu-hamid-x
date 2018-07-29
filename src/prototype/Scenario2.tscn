@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://prototype/Main.tscn" type="PackedScene" id=1]
 [ext_resource path="res://prototype/arial.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://prototype/Props/Lava.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prototype/Props/Mine.tscn" type="PackedScene" id=4]
-[ext_resource path="res://prototype/Props/WreckingBall.tscn" type="PackedScene" id=5]
+[ext_resource path="res://prototype/Props/Spike.tscn" type="PackedScene" id=5]
+[ext_resource path="res://prototype/Props/WreckingBall.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -56,12 +57,36 @@ position = Vector2( -974.286, 120.708 )
 
 position = Vector2( 25.8662, -310.391 )
 
-[node name="WreckingBall" parent="Traps" index="7" instance=ExtResource( 5 )]
+[node name="Spike" parent="Traps" index="7" instance=ExtResource( 5 )]
 
-position = Vector2( 841.051, -440.084 )
+position = Vector2( 898.903, 540 )
+_sections_unfolded = [ "Collision", "Transform" ]
+damage_to_deal = 2
 
-[node name="WreckingBall2" parent="Traps" index="8" instance=ExtResource( 5 )]
+[node name="WreckingBall2" parent="Traps" index="8" instance=ExtResource( 6 )]
 
 position = Vector2( 556.525, 189.322 )
+
+[node name="Spike2" parent="Traps" index="9" instance=ExtResource( 5 )]
+
+position = Vector2( 821.654, 540 )
+_sections_unfolded = [ "Collision", "Transform" ]
+damage_to_deal = 2
+
+[node name="Spike3" parent="Traps" index="10" instance=ExtResource( 5 )]
+
+position = Vector2( 948.062, 540 )
+_sections_unfolded = [ "Collision", "Transform" ]
+damage_to_deal = 2
+
+[node name="Spike4" parent="Traps" index="11" instance=ExtResource( 5 )]
+
+position = Vector2( 863.79, 540 )
+_sections_unfolded = [ "Collision", "Transform" ]
+damage_to_deal = 2
+
+[node name="WreckingBall" parent="Traps" index="12" instance=ExtResource( 6 )]
+
+position = Vector2( 841.051, -440.084 )
 
 
