@@ -1,0 +1,94 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://prototype/Props/WreckingBall.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 1, 1 )
+
+[node name="WreckingBall" type="StaticBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 0
+collision_mask = 0
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+
+[node name="SwingingSegment" type="KinematicBody2D" parent="." index="1" groups=[
+"traps",
+]]
+
+editor/display_folded = true
+input_pickable = false
+collision_layer = 1
+collision_mask = 14
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+damage_to_deal = 2
+swing_extent_in_radian = 1.0472
+seconds_per_full_swing = 1.5
+
+[node name="Tween" type="Tween" parent="SwingingSegment" index="0"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SwingingSegment" index="1"]
+
+position = Vector2( 0.550336, -4.97081 )
+scale = Vector2( 3.52041, 4.36094 )
+build_mode = 0
+polygon = PoolVector2Array( 2.63481, 0.113222, -2.69284, 0.125683, -2.59735, 27.4632, -10.2078, 30.7927, -12.3482, 38.641, -6.64039, 44.5866, 7.1535, 44.5866, 12.3857, 38.4032, 10.9587, 29.6036, 2.63481, 27.4632 )
+
+[node name="ColorRect" type="ColorRect" parent="SwingingSegment" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -9.0
+margin_top = -5.0
+margin_right = 10.0
+margin_bottom = 115.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.136719, 0.136719, 0.136719, 1 )
+
+[node name="ColorRect2" type="ColorRect" parent="SwingingSegment" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -40.0
+margin_top = 115.0
+margin_right = 40.0
+margin_bottom = 187.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.433594, 0, 0, 1 )
+
+[connection signal="tween_completed" from="SwingingSegment/Tween" to="SwingingSegment" method="_on_finish_swing"]
+
+

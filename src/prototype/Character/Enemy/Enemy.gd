@@ -21,6 +21,7 @@ func _ready():
 	register_damaging_group('sword')
 	register_damaging_group('playerbullet')
 	register_damaging_group('explosion')
+	register_damaging_group('traps')
 
 
 func _process(delta):
