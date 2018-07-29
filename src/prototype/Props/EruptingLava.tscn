@@ -6,7 +6,7 @@
 [node name="EruptingLava" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
-movement_speed = 400
+movement_speed = 300
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="." index="2"]
 
