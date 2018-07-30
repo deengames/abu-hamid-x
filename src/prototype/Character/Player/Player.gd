@@ -92,7 +92,7 @@ func _unhandled_input(event):
 		if event is InputEventKey and event.scancode == KEY_ESCAPE:
 			get_tree().change_scene('res://prototype/MainMenu.tscn')
 		else:
-			get_tree().change_scene('res://prototype/Main.tscn')
+			get_tree().change_scene(get_parent().filename)
 
 	
 func _on_body_entered(body):
