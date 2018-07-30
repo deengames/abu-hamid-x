@@ -29,12 +29,18 @@ func _free():
 	queue_free()
 
 func _death():
+	if is_dead:
+		return
+	
 	is_dead = true
 	emit_signal('death', self)
 	_free()
 
 
 func _damage(dmg_points):
+	if is_dead:
+		return
+	
 	health -= dmg_points
 	emit_signal('damaged', self)
 	if health <= 0:
