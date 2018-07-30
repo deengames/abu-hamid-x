@@ -19,7 +19,7 @@ _sections_unfolded = [ "Visibility" ]
 
 [node name="ColorBox" parent="." index="1"]
 
-color = Color( 1, 0, 0, 0.05 )
+color = Color( 1, 0, 0, 0.196078 )
 
 [node name="HealthBar" parent="." index="2"]
 
