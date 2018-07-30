@@ -16,4 +16,8 @@ bullet_velocity = 100
 
 color = Color( 0.078125, 0, 1, 1 )
 
+[node name="HealthBar" parent="." index="2"]
+
+max_value = 10.0
+
 

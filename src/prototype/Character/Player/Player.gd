@@ -5,7 +5,7 @@ export (int) var acceleration = 2000
 
 export (float) var health_regen_per_second = 0.5
 export (float) var flying_impulse_velocity = 4500
-export (float) var flying_attack_min_velocity = 600
+export (float) var flying_attack_min_velocity = 500
 export (float) var flying_attack_cooldown = 1.5
 
 signal fuel_change(new_fuel, max_fuel)
@@ -92,7 +92,7 @@ func _unhandled_input(event):
 		if event is InputEventKey and event.scancode == KEY_ESCAPE:
 			get_tree().change_scene('res://prototype/MainMenu.tscn')
 		else:
-			get_tree().change_scene('res://prototype/Main.tscn')
+			get_tree().change_scene(get_parent().filename)
 
 	
 func _on_body_entered(body):
