@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://prototype/Props/Spikes.tscn" type="PackedScene" id=1]
+[ext_resource path="res://prototype/Props/OscillatingSpikes.gd" type="Script" id=2]
+
+[node name="OscillatingSpikes" index="0" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+damage = 2
+seconds_per_oscillation = 2
+disabled_color = Color( 0.560784, 0.517647, 0.517647, 1 )
+
+

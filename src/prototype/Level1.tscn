@@ -1,11 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://prototype/Main.gd" type="Script" id=1]
+[ext_resource path="res://prototype/Level.gd" type="Script" id=1]
 [ext_resource path="res://prototype/Props/Wall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://prototype/Character/Player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prototype/arial.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://prototype/PowerupSpawn/PowerupSpawn.tscn" type="PackedScene" id=5]
-
 
 [sub_resource type="DynamicFont" id=1]
 
@@ -84,7 +83,7 @@ rotation = 4.71239
 
 [node name="Player" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 520, 240 )
+position = Vector2( 1082.39, 613.996 )
 
 [node name="WaveSpawnTimer" type="Timer" parent="." index="2"]
 
@@ -95,6 +94,7 @@ autostart = true
 
 [node name="ui" type="CanvasLayer" parent="." index="3"]
 
+editor/display_folded = true
 layer = 1
 offset = Vector2( 0, 0 )
 rotation = 0.0
@@ -155,6 +155,14 @@ _sections_unfolded = [ "Material", "Visibility", "custom_fonts" ]
 
 position = Vector2( 995.57, 160.726 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="ScrollAnchor" type="Node2D" parent="." index="5"]
+
+position = Vector2( 830.949, 5905.05 )
+
+[node name="ScrollAnchor2" type="Node2D" parent="." index="6"]
+
+position = Vector2( 13074.6, 204.419 )
 
 [connection signal="shoot_bullet" from="Player" to="." method="_on_Player_shoot_bullet"]
 

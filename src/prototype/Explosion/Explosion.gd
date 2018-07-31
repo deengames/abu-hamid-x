@@ -1,6 +1,6 @@
 extends Area2D
 
-const seconds_to_fade = 1.5
+const seconds_to_fade = 0.5
 var seconds_since_spawn = 0
 var damage_to_deal
 
