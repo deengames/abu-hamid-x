@@ -7,8 +7,14 @@ signal spawn_bullet_pickup(bullet_pickup)
 export (int) var damage_to_deal = 1
 export (float) var movement_speed = 10
 
+export (float) var jump_force = 1500
+
 var bullet_pickup_cls = preload('res://prototype/Bullet/BulletPickup.tscn')
 var player
+
+var old_position = Vector2(0, 0)
+
+onready var floor_raycast = $FloorRaycast
 
 func init(player_):
 	player = player_
@@ -27,6 +33,10 @@ func _ready():
 
 func _process(delta):
 	$HealthBar.value = health
+
+	if position.ceil() == old_position.ceil() and floor_raycast.is_colliding():
+		apply_impulse(Vector2(0, 0), Vector2(0, -jump_force))
+	old_position = position
 
 
 func _integrate_forces(state):
