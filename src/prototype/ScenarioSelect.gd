@@ -20,6 +20,7 @@ func _on_Level2BUtton_pressed():
 		preload("res://prototype/Character/Enemy/ShooterEnemy.tscn"): 3,
 		preload("res://prototype/Character/Enemy/Kamikaze/Kamikaze.tscn"): 2
 	}
+	global.special_spawns = {}
 	
 	get_tree().change_scene('res://prototype/Level2.tscn')
 
@@ -29,6 +30,7 @@ func _on_Level3Button_pressed():
 		preload("res://prototype/Character/Enemy/ShooterEnemy.tscn"): 3,
 		preload("res://prototype/Character/Enemy/Kamikaze/Kamikaze.tscn"): 2
 	}
+	global.special_spawns = {}
 	
 	get_tree().change_scene('res://prototype/Level3.tscn')
 
@@ -39,5 +41,6 @@ func _on_Level4Button_pressed():
 		preload("res://prototype/Character/Enemy/Kamikaze/Kamikaze.tscn"): 2,
 		preload("res://prototype/Character/Enemy/Assassin/Assassin.tscn"): 2
 	}
+	global.special_spawns = {}
 	
 	get_tree().change_scene('res://prototype/Level4.tscn')
