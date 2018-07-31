@@ -8,8 +8,10 @@ export (int) var damage_to_deal = 1
 export (float) var movement_speed = 10
 
 var bullet_pickup_cls = preload('res://prototype/Bullet/BulletPickup.tscn')
-onready var player = get_tree().get_root().get_node("Main").get_node('Player')
+var player
 
+func init(player_):
+	player = player_
 
 func _ready():
 	var width = ProjectSettings.get_setting('display/window/size/width')

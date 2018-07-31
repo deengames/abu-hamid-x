@@ -10,6 +10,7 @@ var num_spawned_entities = 0
 onready var timer = $WaveSpawnTimer
 
 onready var powerup_spawn = $PowerupSpawn
+onready var player = $Player
 
 
 func _new_wave():
@@ -44,6 +45,7 @@ func _new_wave():
 
 func _add_entity(enemy_cls):
 	var e = enemy_cls.instance()
+	e.init(player)
 	add_child(e)
 	e.connect('death', self, '_on_spawned_entity_death')
 	e.connect('death', powerup_spawn, '_on_enemy_death')
