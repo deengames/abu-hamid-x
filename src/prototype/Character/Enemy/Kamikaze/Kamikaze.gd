@@ -1,7 +1,7 @@
 extends "../Enemy.gd"
 
 export (int) var explosion_radius = 40
-export (int) var explosion_damage = 4
+export (int) var explosion_damage = 3
 
 var explodes = preload('res://prototype/Explosion/Explodes.gd').new(explosion_radius, explosion_damage)
 
