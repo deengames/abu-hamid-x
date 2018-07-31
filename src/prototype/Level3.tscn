@@ -5,11 +5,7 @@
 [ext_resource path="res://prototype/Props/Spikes.tscn" type="PackedScene" id=3]
 [ext_resource path="res://prototype/Props/Mine.tscn" type="PackedScene" id=4]
 
-[node name="Level3" index="0" instance=ExtResource( 1 )]
-
-[node name="Wall3" parent="Walls" index="4"]
-
-position = Vector2( 866.226, -1824.15 )
+[node name="Level3" instance=ExtResource( 1 )]
 
 [node name="Swinging" parent="." index="5"]
 
@@ -19,15 +15,15 @@ editor/display_folded = true
 
 [node name="OscillatingSpikes" parent="Spikes" index="0" instance=ExtResource( 2 )]
 
-position = Vector2( 737.991, 726.234 )
+position = Vector2( 545.053, 726.234 )
 
 [node name="OscillatingSpikes2" parent="Spikes" index="1" instance=ExtResource( 2 )]
 
-position = Vector2( 837.899, 726.234 )
+position = Vector2( 644.961, 726.234 )
 
 [node name="OscillatingSpikes3" parent="Spikes" index="2" instance=ExtResource( 2 )]
 
-position = Vector2( 937.367, 726.674 )
+position = Vector2( 744.429, 726.674 )
 
 [node name="Spikes4" parent="Spikes" index="3" instance=ExtResource( 3 )]
 
