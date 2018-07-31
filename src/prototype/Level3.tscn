@@ -1,15 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://prototype/Level2.tscn" type="PackedScene" id=1]
-[ext_resource path="res://prototype/Props/Spike.tscn" type="PackedScene" id=2]
-[ext_resource path="res://prototype/Props/OscillatingSpike.tscn" type="PackedScene" id=3]
-[ext_resource path="res://prototype/Props/Mine.tscn" type="PackedScene" id=4]
+[ext_resource path="res://prototype/Props/Spikes.tscn" type="PackedScene" id=2]
+[ext_resource path="res://prototype/Props/Mine.tscn" type="PackedScene" id=3]
 
 [node name="Level3" index="0" instance=ExtResource( 1 )]
-
-[node name="Walls" parent="." index="0"]
-
-editor/display_folded = false
 
 [node name="Wall3" parent="Walls" index="4"]
 
@@ -21,275 +16,63 @@ editor/display_folded = true
 
 [node name="Spikes" type="Node2D" parent="." index="6"]
 
-editor/display_folded = true
+[node name="Spikes" parent="Spikes" index="0" instance=ExtResource( 2 )]
 
-[node name="Group1" type="Node2D" parent="Spikes" index="0"]
-
-editor/display_folded = true
-
-[node name="Spike" parent="Spikes/Group1" index="0" instance=ExtResource( 2 )]
-
-position = Vector2( 368.281, 727.369 )
-
-[node name="Spike2" parent="Spikes/Group1" index="1" instance=ExtResource( 2 )]
-
-position = Vector2( 393.823, 727.693 )
-
-[node name="Spike3" parent="Spikes/Group1" index="2" instance=ExtResource( 2 )]
-
-position = Vector2( 419.367, 727.693 )
-
-[node name="Spike4" parent="Spikes/Group1" index="3" instance=ExtResource( 2 )]
-
-position = Vector2( 445.232, 727.693 )
-
-[node name="Spike5" parent="Spikes/Group1" index="4" instance=ExtResource( 2 )]
-
-position = Vector2( 473.25, 726.398 )
-
-[node name="Spike6" parent="Spikes/Group1" index="5" instance=ExtResource( 2 )]
-
-position = Vector2( 499.115, 726.398 )
-
-[node name="Group2Oscillating" type="Node2D" parent="Spikes" index="1"]
-
-editor/display_folded = true
-
-[node name="OscillatingSpike" parent="Spikes/Group2Oscillating" index="0" instance=ExtResource( 3 )]
-
-position = Vector2( 908.637, 728.206 )
-
-[node name="OscillatingSpike2" parent="Spikes/Group2Oscillating" index="1" instance=ExtResource( 3 )]
-
-position = Vector2( 937.305, 728.942 )
-
-[node name="OscillatingSpike3" parent="Spikes/Group2Oscillating" index="2" instance=ExtResource( 3 )]
-
-position = Vector2( 966.709, 728.942 )
-
-[node name="OscillatingSpike4" parent="Spikes/Group2Oscillating" index="3" instance=ExtResource( 3 )]
-
-position = Vector2( 996.112, 729.677 )
-
-[node name="OscillatingSpike5" parent="Spikes/Group2Oscillating" index="4" instance=ExtResource( 3 )]
-
-position = Vector2( 1029.19, 729.677 )
-
-[node name="OscillatingSpike6" parent="Spikes/Group2Oscillating" index="5" instance=ExtResource( 3 )]
-
-position = Vector2( 1062.27, 729.677 )
-
-[node name="Group3" type="Node2D" parent="Spikes" index="2"]
-
-editor/display_folded = true
-
-[node name="Spike7" parent="Spikes/Group3" index="0" instance=ExtResource( 2 )]
-
-position = Vector2( 1572.87, 729.659 )
-
-[node name="Spike9" parent="Spikes/Group3" index="1" instance=ExtResource( 2 )]
-
-position = Vector2( 1598.74, 729.659 )
-
-[node name="Spike12" parent="Spikes/Group3" index="2" instance=ExtResource( 2 )]
-
-position = Vector2( 1624.6, 729.659 )
-
-[node name="Spike8" parent="Spikes/Group3" index="3" instance=ExtResource( 2 )]
-
-position = Vector2( 1650.47, 729.659 )
-
-[node name="Spike10" parent="Spikes/Group3" index="4" instance=ExtResource( 2 )]
-
-position = Vector2( 1677.48, 729.659 )
-
-[node name="Spike11" parent="Spikes/Group3" index="5" instance=ExtResource( 2 )]
-
-position = Vector2( 1705.1, 730.099 )
-
-[node name="Group4" type="Node2D" parent="Spikes" index="3"]
-
-editor/display_folded = true
-
-[node name="Spike21" parent="Spikes/Group4" index="0" instance=ExtResource( 2 )]
-
-position = Vector2( -198, -184.659 )
-rotation = 1.5708
-
-[node name="Spike24" parent="Spikes/Group4" index="1" instance=ExtResource( 2 )]
-
-position = Vector2( -197.863, -165.547 )
-rotation = 1.5708
-
-[node name="Spike23" parent="Spikes/Group4" index="2" instance=ExtResource( 2 )]
-
-position = Vector2( -197.546, -147.17 )
-rotation = 1.5708
-
-[node name="Spike19" parent="Spikes/Group4" index="3" instance=ExtResource( 2 )]
-
-position = Vector2( -197.984, -125.733 )
-rotation = 1.5708
-
-[node name="Spike22" parent="Spikes/Group4" index="4" instance=ExtResource( 2 )]
-
-position = Vector2( -198.502, -89.0383 )
-rotation = 1.5708
-
-[node name="Spike20" parent="Spikes/Group4" index="5" instance=ExtResource( 2 )]
-
-position = Vector2( -197.966, -106.165 )
-rotation = 1.5708
-
-[node name="Group5" type="Node2D" parent="Spikes" index="4"]
-
-editor/display_folded = true
-position = Vector2( 2.02863, 299.142 )
-
-[node name="Spike21" parent="Spikes/Group5" index="0" instance=ExtResource( 2 )]
-
-position = Vector2( 2158.72, -292.949 )
-rotation = 1.5708
-
-[node name="Spike24" parent="Spikes/Group5" index="1" instance=ExtResource( 2 )]
-
-position = Vector2( 2158.86, -273.837 )
-rotation = 1.5708
-
-[node name="Spike23" parent="Spikes/Group5" index="2" instance=ExtResource( 2 )]
-
-position = Vector2( 2159.18, -255.46 )
-rotation = 1.5708
-
-[node name="Spike19" parent="Spikes/Group5" index="3" instance=ExtResource( 2 )]
-
-position = Vector2( 2158.74, -234.023 )
-rotation = 1.5708
-
-[node name="Spike22" parent="Spikes/Group5" index="4" instance=ExtResource( 2 )]
-
-position = Vector2( 2158.22, -197.328 )
-rotation = 1.5708
-
-[node name="Spike20" parent="Spikes/Group5" index="5" instance=ExtResource( 2 )]
-
-position = Vector2( 2158.76, -214.455 )
-rotation = 1.5708
-
-[node name="Group6Oscillating" type="Node2D" parent="Spikes" index="5"]
-
-editor/display_folded = true
-rotation = 1.5708
-_sections_unfolded = [ "Transform" ]
-
-[node name="OscillatingSpike" parent="Spikes/Group6Oscillating" index="0" instance=ExtResource( 3 )]
-
-position = Vector2( 183.778, 193.848 )
-
-[node name="OscillatingSpike2" parent="Spikes/Group6Oscillating" index="1" instance=ExtResource( 3 )]
-
-position = Vector2( 206.388, 194.915 )
-
-[node name="OscillatingSpike3" parent="Spikes/Group6Oscillating" index="2" instance=ExtResource( 3 )]
-
-position = Vector2( 226.194, 194.475 )
-
-[node name="OscillatingSpike4" parent="Spikes/Group6Oscillating" index="3" instance=ExtResource( 3 )]
-
-position = Vector2( 248.2, 194.035 )
-
-[node name="OscillatingSpike5" parent="Spikes/Group6Oscillating" index="4" instance=ExtResource( 3 )]
-
-position = Vector2( 268.733, 194.576 )
-
-[node name="OscillatingSpike6" parent="Spikes/Group6Oscillating" index="5" instance=ExtResource( 3 )]
-
-position = Vector2( 290.348, 194.576 )
-
-[node name="Group7Oscillating" type="Node2D" parent="Spikes" index="6"]
-
-editor/display_folded = true
-position = Vector2( 462.959, 15.179 )
-rotation = 1.5708
-_sections_unfolded = [ "Transform" ]
-
-[node name="OscillatingSpike" parent="Spikes/Group7Oscillating" index="0" instance=ExtResource( 3 )]
-
-position = Vector2( -297.764, -1696.61 )
-
-[node name="OscillatingSpike2" parent="Spikes/Group7Oscillating" index="1" instance=ExtResource( 3 )]
-
-position = Vector2( -275.154, -1695.54 )
-
-[node name="OscillatingSpike3" parent="Spikes/Group7Oscillating" index="2" instance=ExtResource( 3 )]
-
-position = Vector2( -255.348, -1695.98 )
-
-[node name="OscillatingSpike4" parent="Spikes/Group7Oscillating" index="3" instance=ExtResource( 3 )]
-
-position = Vector2( -233.342, -1696.42 )
-
-[node name="OscillatingSpike5" parent="Spikes/Group7Oscillating" index="4" instance=ExtResource( 3 )]
-
-position = Vector2( -212.809, -1695.88 )
-
-[node name="OscillatingSpike6" parent="Spikes/Group7Oscillating" index="5" instance=ExtResource( 3 )]
-
-position = Vector2( -191.195, -1695.88 )
+position = Vector2( 806.714, 728.458 )
 
 [node name="Mines" type="Node2D" parent="." index="7"]
 
 editor/display_folded = true
 
-[node name="Mine" parent="Mines" index="0" instance=ExtResource( 4 )]
+[node name="Mine" parent="Mines" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( 1771.18, 500.468 )
 
-[node name="Mine2" parent="Mines" index="1" instance=ExtResource( 4 )]
+[node name="Mine2" parent="Mines" index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 1419.39, -8.71906 )
 
-[node name="Mine3" parent="Mines" index="2" instance=ExtResource( 4 )]
+[node name="Mine3" parent="Mines" index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 1246.87, 632.697 )
 
-[node name="Mine4" parent="Mines" index="3" instance=ExtResource( 4 )]
+[node name="Mine4" parent="Mines" index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 1799.54, 52.9276 )
 
-[node name="Mine5" parent="Mines" index="4" instance=ExtResource( 4 )]
+[node name="Mine5" parent="Mines" index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 1110.18, -182.111 )
 
-[node name="Mine6" parent="Mines" index="5" instance=ExtResource( 4 )]
+[node name="Mine6" parent="Mines" index="5" instance=ExtResource( 3 )]
 
 position = Vector2( 1534.9, -285.81 )
 
-[node name="Mine7" parent="Mines" index="6" instance=ExtResource( 4 )]
+[node name="Mine7" parent="Mines" index="6" instance=ExtResource( 3 )]
 
 position = Vector2( 2032.42, -264.639 )
 
-[node name="Mine9" parent="Mines" index="7" instance=ExtResource( 4 )]
+[node name="Mine9" parent="Mines" index="7" instance=ExtResource( 3 )]
 
 position = Vector2( -38.7688, 21.6152 )
 
-[node name="Mine10" parent="Mines" index="8" instance=ExtResource( 4 )]
+[node name="Mine10" parent="Mines" index="8" instance=ExtResource( 3 )]
 
 position = Vector2( 550.448, -306.981 )
 
-[node name="Mine11" parent="Mines" index="9" instance=ExtResource( 4 )]
+[node name="Mine11" parent="Mines" index="9" instance=ExtResource( 3 )]
 
 position = Vector2( 254.053, -52.928 )
 
-[node name="Mine13" parent="Mines" index="10" instance=ExtResource( 4 )]
+[node name="Mine13" parent="Mines" index="10" instance=ExtResource( 3 )]
 
 position = Vector2( -63.5137, -296.396 )
 
-[node name="Mine14" parent="Mines" index="11" instance=ExtResource( 4 )]
+[node name="Mine14" parent="Mines" index="11" instance=ExtResource( 3 )]
 
 position = Vector2( 245.801, 618.687 )
 
-[node name="Mine16" parent="Mines" index="12" instance=ExtResource( 4 )]
+[node name="Mine16" parent="Mines" index="12" instance=ExtResource( 3 )]
 
 position = Vector2( -23.841, 330.43 )
 
