@@ -1,6 +1,5 @@
 extends Node2D
 
-export (int) var waves_per_game = 10
 export (int) var points_in_first_wave = 1
 export (int) var increment_per_wave = 2
 
@@ -60,7 +59,7 @@ func _on_spawned_entity_death(entity):
 func _process(delta):
 	if num_spawned_entities <= 0 and timer.is_stopped():
 		timer.start()
-	$ui/WaveLabel.text = "WAVE: " + str(wave_num) + ' / ' + str(waves_per_game)
+	$ui/WaveLabel.text = "WAVE: " + str(wave_num) + ' / ' + str(global.FINAL_WAVE_NUMBER)
 
 
 func _on_Player_shoot_bullet(bullet):

@@ -14,11 +14,10 @@ use_filter = false
 font_data = ExtResource( 4 )
 _sections_unfolded = [ "Font", "Settings" ]
 
-[node name="Main" type="Node2D" index="0"]
+[node name="Main" type="Node2D"]
 
 position = Vector2( 460, 680 )
 script = ExtResource( 1 )
-waves_per_game = 10
 points_in_first_wave = 1
 increment_per_wave = 2
 
