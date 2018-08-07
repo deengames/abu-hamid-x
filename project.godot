@@ -11,12 +11,8 @@ config_version=3
 [application]
 
 config/name="Abu Hamid X"
-run/main_scene="res://stage/Stage.tscn"
-config/icon="res://icon.png"
-
-[autoload]
-
-global="*res://prototype/global.gd"
+run/main_scene="res://src/stage/Stage.tscn"
+config/icon="res://src/icon.png"
 
 [debug]
 
