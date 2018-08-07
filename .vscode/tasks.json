@@ -7,7 +7,11 @@
             "label": "gut",
             "type": "shell",
             "command": "godot -d -s addons/gut/gut_cmdln.gd",
-            "problemMatcher": []
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
         }
     ]
 }
