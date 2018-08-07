@@ -20,7 +20,7 @@ settings/fps/force_fps=60
 
 [editor_plugins]
 
-enabled=PoolStringArray( "open-external-editor" )
+enabled=PoolStringArray( "gut", "open-external-editor" )
 
 [input]
 
