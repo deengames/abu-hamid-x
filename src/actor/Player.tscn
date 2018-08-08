@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/actor/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/component/movement/ControlledHorizontalMovement.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/component/movement/GravityAffected.tscn" type="PackedScene" id=3]
-
+[ext_resource path="res://src/component/movement/ControlledJump.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -73,6 +73,10 @@ movement_speed = 1000
 
 [node name="GravityAffected" parent="." index="4" instance=ExtResource( 3 )]
 
-mass = 10.0
+mass = 15.0
+
+[node name="ControlledJump" parent="." index="5" instance=ExtResource( 4 )]
+
+jump_velocity = 600
 
 
