@@ -1,0 +1,17 @@
+language: bash
+install:
+  - wget https://downloads.tuxfamily.org/godotengine/3.0.6/Godot_v3.0.6-stable_linux_headless.64.zip
+  - unzip Godot_v3.0.6-stable_linux_headless.64.zip
+  - chmod +x Godot_v3.0.6-stable_linux_headless.64
+after_success:
+  - wget https://raw.githubusercontent.com/k3rn31p4nic/travis-ci-discord-webhook/master/send.sh
+  - chmod +x send.sh
+  - ./send.sh success $WEBHOOK_URL
+after_failure:
+  - wget https://raw.githubusercontent.com/k3rn31p4nic/travis-ci-discord-webhook/master/send.sh
+  - chmod +x send.sh
+  - ./send.sh failure $WEBHOOK_URL
+script: ./Godot_v3.0.6-stable_linux_headless.64 -d -s addons/gut/gut_cmdln.gd
+branches:
+  only:
+  - master
