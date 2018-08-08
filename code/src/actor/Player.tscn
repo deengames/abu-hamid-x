@@ -78,6 +78,7 @@ mass = 15.0
 
 [node name="ControlledJump" parent="." index="5" instance=ExtResource( 4 )]
 
-[node name="ControlledJetpack" parent="." index="6" instance=ExtResource( 5 )]
+jump_velocity = 600
 
+[node name="ControlledJetpack" parent="." index="6" instance=ExtResource( 5 )]
 
