@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://actor/Player.gd" type="Script" id=1]
-[ext_resource path="res://component/movement/ControlledHorizontalMovement.tscn" type="PackedScene" id=2]
-[ext_resource path="res://component/movement/GravityAffected.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/actor/Player.gd" type="Script" id=1]
+[ext_resource path="res://src/component/movement/ControlledHorizontalMovement.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/component/movement/GravityAffected.tscn" type="PackedScene" id=3]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 

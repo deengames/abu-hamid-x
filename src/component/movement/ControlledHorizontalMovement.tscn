@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://component/movement/ControlledHorizontalMovement.gd" type="Script" id=1]
+[ext_resource path="res://src/component/movement/ControlledHorizontalMovement.gd" type="Script" id=1]
+
 
 [node name="ControlledHorizontalMovement" type="Node2D"]
 

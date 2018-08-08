@@ -1,0 +1,4 @@
+{
+    "dirs": ["res://tests/"],
+    "should_exit": true
+}
