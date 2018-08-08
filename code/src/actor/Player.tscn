@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/actor/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/component/movement/ControlledHorizontalMovement.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/component/movement/GravityAffected.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/component/movement/ControlledJump.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/component/movement/ControlledJetpack.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/weapons/Sword.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -78,7 +79,8 @@ mass = 15.0
 
 [node name="ControlledJump" parent="." index="5" instance=ExtResource( 4 )]
 
-jump_velocity = 600
-
 [node name="ControlledJetpack" parent="." index="6" instance=ExtResource( 5 )]
+
+[node name="Sword" parent="." index="7" instance=ExtResource( 6 )]
+
 
