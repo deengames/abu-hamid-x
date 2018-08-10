@@ -2,7 +2,6 @@ extends "res://addons/gut/test.gd"
 
 var sword_cls = preload('res://src/weapons/Sword.tscn')
 
-var position = Vector2()
 var sword
 
 func setup():
