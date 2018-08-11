@@ -9,4 +9,4 @@ after_success:
   - ./send.sh success $WEBHOOK_URL
 after_failure:
   - ./send.sh failure $WEBHOOK_URL
-script: ./Godot_v3.0.6-stable_linux_headless.64 -d -s addons/gut/gut_cmdln.gd
+script: ./Godot_v3.0.6-stable_linux_headless.64 -s addons/gut/gut_cmdln.gd

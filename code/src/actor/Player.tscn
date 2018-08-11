@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/actor/Player.gd" type="Script" id=1]
 [ext_resource path="res://src/component/movement/ControlledHorizontalMovement.tscn" type="PackedScene" id=2]
@@ -6,13 +6,14 @@
 [ext_resource path="res://src/component/movement/ControlledJump.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/component/movement/ControlledJetpack.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/weapons/Sword.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/weapons/Gun.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 20 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 2
@@ -82,5 +83,7 @@ mass = 15.0
 [node name="ControlledJetpack" parent="." index="6" instance=ExtResource( 5 )]
 
 [node name="Sword" parent="." index="7" instance=ExtResource( 6 )]
+
+[node name="Gun" parent="." index="8" instance=ExtResource( 7 )]
 
 

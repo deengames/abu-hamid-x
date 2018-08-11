@@ -2,7 +2,6 @@ extends "res://addons/gut/test.gd"
 
 var sword_cls = preload('res://src/weapons/Sword.tscn')
 
-var position = Vector2()
 var sword
 
 func setup():
@@ -91,7 +90,6 @@ func test_process_swing_returns_angles_depending_on_mouse_pos():
 		var expected = test_table[mouse_pos]
 		
 		var actual = sword._process_swing(mouse_pos)
-		print(actual, ' : ', expected)
 		
 		assert_almost_eq(actual.start, expected.start, error_margin)
 		assert_almost_eq(actual.end, expected.end, error_margin)
