@@ -15,7 +15,10 @@ var seconds_since_last_shot = 999
 func _create_bullet(mouse_pos):
 	var bullet = bullet_prototype.duplicate()
 	
-	# minus PI/2 for correction
+	# minus PI/2 for correction: needed because 
+	# angle_to_point gets angle relative to `x` axis
+	# while rotation is relative to `y` axis
+	# that is, if rotation == 0, object points towards -y
 	var shoot_angle = global_position.angle_to_point(mouse_pos) - PI/2
 	
 	bullet.init(bullet_speed, shoot_angle, global_position)
