@@ -1,56 +1,51 @@
 extends "res://addons/gut/test.gd"
 
-var gun_cls = preload('res://src/weapons/Gun.tscn')
+var component_cls = preload('res://src/component/ShootsEntity.tscn')
 
-var gun
+var comp
+
+class EntityMock:
+	var position = Vector2()
 
 func setup():
-	gun = gun_cls.instance()
-	add_child(gun)
+	comp = component_cls.instance()
+	comp.entity = EntityMock.new()
+	add_child(comp)
 
 func teardown():
-	Input.action_release('shoot')
-	remove_child(gun)
+	remove_child(comp)
 
 func test_init():
-	assert_true(gun != null)
+	assert_true(comp != null)
 
 func test_process_counts_seconds_since_last_shot():
-	gun.seconds_since_last_shot = 0
-	var delta = 500
+	comp.seconds_since_last_shot = 0
+	comp.bullets_per_second = 1.0/500.0
+	var delta = 499
 
-	gun._process(delta)
+	comp._process(delta)
 
-	assert_eq(gun.seconds_since_last_shot, delta)
+	assert_eq(comp.seconds_since_last_shot, delta)
 
-func test_process_calls_shoot_if_input_given_and_not_cooldown():
-	Input.action_press('shoot')
-	gun.seconds_since_last_shot = 999
+func test_process_calls_shoot_if_not_cooldown():
+	comp.seconds_since_last_shot = 999
 
-	gun._process(0)
+	comp._process(0)
 
 	# i.e: shoot was called
-	assert_eq(gun.seconds_since_last_shot, 0)
-
-func test_process_doesnt_call_if_no_input_given():
-	var orig_value = 999
-	gun.seconds_since_last_shot = orig_value
-
-	gun._process(0)
-
-	assert_eq(gun.seconds_since_last_shot, orig_value)
+	assert_eq(comp.seconds_since_last_shot, 0)
 
 func test_process_doesnt_call_if_cooldown():
 	Input.action_press('shoot')
-	gun.seconds_since_last_shot = -1
+	comp.seconds_since_last_shot = -1
 
-	gun._process(0)
+	comp._process(0)
 
-	assert_eq(gun.seconds_since_last_shot, -1)
+	assert_eq(comp.seconds_since_last_shot, -1)
 
 func test_create_bullet_creates_and_prepares_bullet():
-	gun.global_position = Vector2()
-	gun.bullet_speed = 1500
+	comp.global_position = Vector2()
+	comp.bullet_speed = 1500
 
 	var error_margin = 0.05
 
@@ -75,7 +70,7 @@ func test_create_bullet_creates_and_prepares_bullet():
 	for mouse_pos in test_table:
 		var expected_velocity = test_table[mouse_pos]
 		
-		var bullet = gun._create_bullet(mouse_pos)
+		var bullet = comp._create_bullet(mouse_pos)
 		assert_almost_eq(bullet.velocity.x, expected_velocity.x, error_margin)
 		assert_almost_eq(bullet.velocity.y, expected_velocity.y, error_margin)
-		assert_eq(bullet.position, gun.global_position)
+		assert_eq(bullet.position, comp.global_position)
