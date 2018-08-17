@@ -1,5 +1,11 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/component/ShootsEntity.gd" type="Script" id=1]
 
 [node name="ShootsEntity" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+bullet_speed = 1500
+bullets_per_second = 3.0
 
 
