@@ -4,11 +4,16 @@ var component_cls = preload('res://src/component/movement/FollowsEntity.gd')
 
 var velocity = Vector2()
 var comp
+var _on_floor = true
+
+func is_on_floor():
+	return _on_floor
 
 class EntityMock:
 	var position = Vector2()
 
 func setup():
+	_on_floor = true
 	velocity = Vector2()
 
 	comp = component_cls.new()
@@ -21,6 +26,14 @@ func teardown():
 
 func test_init():
 	assert_true(comp != null)
+
+func test_physics_process_does_nothing_if_not_on_floor():
+	_on_floor = false
+	var old_velocity = velocity
+
+	comp._physics_process(0)
+
+	assert_eq(velocity, old_velocity)
 
 func test_physics_process_moves_towards_entity_along_x_axis():
 	comp.entity.position = Vector2(5, 0)
