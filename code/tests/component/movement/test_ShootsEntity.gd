@@ -4,8 +4,12 @@ var component_cls = preload('res://src/component/ShootsEntity.tscn')
 
 var comp
 
+class EntityMock:
+	var position = Vector2()
+
 func setup():
 	comp = component_cls.instance()
+	comp.entity = EntityMock.new()
 	add_child(comp)
 
 func teardown():
@@ -16,7 +20,7 @@ func test_init():
 
 func test_process_counts_seconds_since_last_shot():
 	comp.seconds_since_last_shot = 0
-	comp.bullets_per_second = 0.05
+	comp.bullets_per_second = 1.0/500.0
 	var delta = 499
 
 	comp._process(delta)
