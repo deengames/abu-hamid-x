@@ -10,12 +10,26 @@
 custom_solver_bias = 0.0
 extents = Vector2( 10, 20 )
 
-[node name="ShooterEnemy" type="KinematicBody2D" index="0"]
+[node name="ShooterEnemy" type="RigidBody2D"]
 
 input_pickable = false
 collision_layer = 4
 collision_mask = 1
-collision/safe_margin = 0.08
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 
@@ -43,8 +57,6 @@ color = Color( 0.15625, 0.604492, 1, 1 )
 _sections_unfolded = [ "Rect" ]
 
 [node name="FollowsEntity" parent="." index="2" instance=ExtResource( 2 )]
-
-movement_speed = 250
 
 [node name="ShootsEntity" parent="." index="3" instance=ExtResource( 3 )]
 
