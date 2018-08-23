@@ -7,14 +7,14 @@
 custom_solver_bias = 0.0
 extents = Vector2( 4, 25 )
 
-[node name="Sword" type="KinematicBody2D"]
+[node name="Sword" type="KinematicBody2D" index="0"]
 
 input_pickable = false
-collision_layer = 0
-collision_mask = 1
+collision_layer = 4
+collision_mask = 5
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "collision" ]
+_sections_unfolded = [ "Collision", "collision" ]
 swing_angle_degrees = 90
 seconds_per_swing = 0.2
 
